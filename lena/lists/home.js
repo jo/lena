@@ -1,4 +1,4 @@
-function(head, req, userCtx, secObj) {
+function(head, req) {
   var render = require('lib/list').render,
       docs = [],
       row;
@@ -13,5 +13,5 @@ function(head, req, userCtx, secObj) {
     docs.push(row.doc);
   }
 
-  render(this, userCtx, docs);
+  render(this, req.userCtx, docs);
 }
