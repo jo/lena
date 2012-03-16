@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'json'
+
+data = JSON.parse(ARGF.read)
+
+data["docs"].each do |doc|
+  url = doc["image_url"]
+  folder = File.basename(File.dirname(url))
+
+  if url && folder
+    system "mkdir -p #{folder} && cd #{folder} && wget #{url}"
+  end
+end

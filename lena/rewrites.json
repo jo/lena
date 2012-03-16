@@ -1,0 +1,57 @@
+[
+  {
+    "from": "/favicon.ico",
+    "to": "favicon.ico",
+    "method": "GET"
+  },
+  {
+    "from": "/style.css",
+    "to": "style.css",
+    "method": "GET"
+  },
+  {
+    "from": "/vendor.js",
+    "to": "vendor.js",
+    "method": "GET"
+  },
+  {
+    "from": "/app.js",
+    "to": "app.js",
+    "method": "GET"
+  },
+
+  {
+    "from": "/",
+    "to": "_list/home/pages",
+    "query": {
+      "include_docs": "true",
+      "limit": "1"
+    },
+    "method": "GET"
+  },
+  {
+    "from": "/:folder",
+    "to": "_list/folder/pages",
+    "query": {
+      "include_docs": "true",
+      "startkey": [":folder"],
+      "endkey": [":folder", {}]
+    },
+    "method": "GET"
+  },
+  {
+    "from": "/:folder/:title",
+    "to": "_list/page/pages",
+    "query": {
+      "include_docs": "true",
+      "startkey": [":folder", ":title"],
+      "endkey": [":folder", ":title", {}]
+    },
+    "method": "GET"
+  },
+  {
+    "from": "/:folder/:title/:id/:filename",
+    "to": "../../:id/:filename",
+    "method": "GET"
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "_id": "_design/lena",
+
+  "title": "Lena Boehm",
+  "description": "Lena is a slick minimalistic Content Management System for artists and others.",
+  "author": "Johannes J. Schmidt, TF, Berlin",
+  "menu": [
+    "Portraits",
+    "Fashion",
+    "References",
+    "About",
+    "Contact"
+  ],
+
+  "templates": <%= map 'templates' %>,
+  "views": <%= map 'views' %>,
+  "lists": <%= map 'lists' %>,
+  "rewrites": <%= read 'rewrites.json' %>,
+  "validate_doc_update": <%=h read 'validate_doc_update.js' %>,
+  "lib": {
+    "mustache": <%=h read 'vendor/mustache.min.js' %>,
+    "list": <%=h read 'lib/list.js' %>
+  },
+
+  "_attachments": {
+    "favicon.ico": {
+      "content_type": "image/x-icon; charset=utf-8",
+      "data": <%=h base64 read 'favicon.ico' %>
+    },
+    "vendor.js": {
+      "content_type": "application/javascript; charset=utf-8",
+      "data": <%=h base64 read 'vendor.js.erb' %>
+    },
+    "app.js": {
+      "content_type": "application/javascript; charset=utf-8",
+      "data": <%=h base64 read 'app.js.erb' %>
+    },
+    "style.css": {
+      "content_type": "text/css; charset=utf-8",
+      "data": <%=h base64 read ['style/*.css', 'style/*.css.erb'] %>
+    }
+  }
+}

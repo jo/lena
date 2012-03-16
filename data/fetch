@@ -1,0 +1,72 @@
+#!/usr/bin/env ruby
+
+require 'hpricot'
+require 'open-uri'
+require 'json'
+
+URL = "http://www.lenaboehm.de/"
+@data = {
+  "docs" => []
+}
+@position = Time.now.to_i
+
+def get url
+  return unless url =~ /^https?:\/\//
+
+  doc = Hpricot.parse(open(url))
+
+  (doc/:"div[@id='pic']").each do |div|
+    row = {}
+    nxt = nil
+
+    # images, take the last one
+    (div/:img).each do |img|
+      row["image_url"] = File.join(URL, img.attributes["src"])
+    end
+
+    # texts, take the last one
+    (div/:"div[@id='left_sub']").each do |node|
+      row["text"] = node.inner_html.strip
+    end
+
+    # is valid lena.image
+    if row["image_url"] && row["text"]
+      # parse id
+      row["_id"] = File.basename(row["image_url"]).sub(/#{File.extname(row["image_url"])}$/, '')
+      
+      # parse folder
+      row["folder"] = File.basename(File.dirname(row["image_url"]))
+
+      # parse title and location
+      parts = row["text"].split('-')
+      row["title"] = parts[0] && parts[0].strip
+      row["location"] = parts[1] && parts[1].strip
+      row.delete("text")
+
+      if row["_id"] && row["folder"] && row["title"] && row["location"]
+        # update position
+        @position += 1
+        row["position"] = @position
+
+        # store row
+        @data["docs"] << row
+      end
+    end
+
+    # next links, take the last one
+    (div/:area).each do |area|
+      nxt = area.attributes["href"]
+    end
+    # skip mail links
+    nxt = nil if nxt =~ /^mailto/
+    # make next link absolute
+    nxt = File.join(URL, nxt) if nxt
+    # follow next link
+    get nxt if nxt
+  end
+end
+
+
+get URL
+
+puts @data.to_json

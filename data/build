@@ -1,0 +1,108 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'cgi'
+
+
+data = JSON.parse(ARGF.read)
+@basedir = File.dirname(__FILE__)
+@position = Time.now.to_i - 1000
+@count = 0
+TYPE = 'page'
+
+# encode base64
+def base64 content
+  [content].pack("m").gsub(/\s+/,'')
+end
+
+# convert docs
+data["docs"].each do |doc|
+  url = doc["image_url"]
+  dirname = File.basename(File.dirname(url))
+  filename = File.basename(url)
+  path = File.join(@basedir, dirname, filename)
+
+  if File.file?(path)
+    doc["_attachments"] ||= {}
+    doc["_attachments"][filename] = {
+      "content_type" => "image/jpg",
+      "data" => base64(File.read(path))
+    }
+
+    doc.delete("image_url")
+  end
+
+  # adjust folder
+  doc["folder"] = "portraits" if doc["folder"] == "artists" || doc["folder"] == "girls"
+  doc["folder"] = doc["folder"].capitalize
+
+  # type
+  doc["type"] = TYPE
+
+  # position
+  @count += 1
+  doc["position"] = @position + @count * 100
+
+  # texts
+  doc["subtitle"] = doc["location"]
+  doc.delete("location")
+
+  doc["aside"] = "<h1>#{doc["title"]}</h1><p>#{doc["desc"]}</p>"
+  doc["article"] = "<img src=\"/#{CGI.escape doc["folder"]}/#{CGI.escape doc["title"]}/#{CGI.escape doc["_id"]}/#{CGI.escape filename}\">"
+end
+
+# references
+entries =<<-STR
+Lorem ipsum dolor sit amet
+consetetur sadipscing elitr
+sed diam nonumy
+eirmod
+tempor
+invidunt
+ut labore et dolore
+magna aliquyam
+erat
+sed diam voluptua
+At vero eos et accusam
+et justo duo
+dolores et ea rebum
+Stet clita
+kasd gubergren
+no sea takimata
+sanctus est
+Lorem ipsum
+dolor sit amet
+STR
+entries = entries.split("\n")
+@count += 1
+data["docs"] << {
+  "_id" => "references",
+  "type" => TYPE,
+  "folder" => "References",
+  "position" => @position + @count * 100,
+  "title" => "I did it!",
+  "article" => "<h1>I did it!</h1><ul class=multicolumn>%s</ul>" % entries.map { |e| '<li>%s</li>' % e }.join("\n")
+}
+
+# about
+@count += 1
+data["docs"] << {
+  "_id" => "about",
+  "type" => TYPE,
+  "folder" => "About",
+  "position" => @position + @count * 100,
+  "title" => "I am Lorem!",
+  "article" => '<h1>I am Lorem!</h1><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>'
+}
+# contact
+@count += 1
+data["docs"] << {
+  "_id" => "contact",
+  "type" => TYPE,
+  "folder" => "Contact",
+  "position" => @position + @count * 100,
+  "title" => "Ich bin",
+  "article" => '<h1>Fotografin</h1><p><a href="http://lenaboehm.de">lenaboehm.de</a><br><a href="mailto:mail@lenaboehm.de">mail@lenaboehm.de</a><br>0163 4206949</p>'
+}
+
+puts data.to_json

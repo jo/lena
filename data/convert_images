@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require 'json'
+
+data = JSON.parse(ARGF.read)
+
+data["docs"].each do |doc|
+  url = doc["image_url"]
+  dirname = File.basename(File.dirname(url))
+  filename = File.basename(url)
+  path = File.join(dirname, filename)
+
+  if File.file?(path)
+    system "convert #{path} -trim #{path}"
+  end
+end

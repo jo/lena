@@ -1,0 +1,42 @@
+var Lena
+// (c) 2012 Johannes J. Schmidt, TF Berlin
+= {
+  helpers: {},
+  models: {},
+  collections: {},
+  views: {}
+};
+
+// helpers
+<%= read 'app/helpers/*.js' %>
+
+// models
+<%= read 'app/models/*.js' %>
+
+// collections
+<%= read 'app/collections/*.js' %>
+
+// views
+<%= read 'app/views/*.js' %>
+
+// router
+<%= read 'app/router.js' %>
+
+// initialize Lena
+// that is: instantiate the router with payload (the design document source)
+// then start dispatching routes.
+Lena.init = function(payload) {
+  // resolve templates
+  // (used by Backbone.View.prototype.render)
+  window.template = function(path) {
+    return  _.reduce(path.split('/'), function(doc, part) {
+      return doc[part];
+    }, payload.ddoc.templates);
+  };
+
+  // during development exposed for inspection:
+  window.app = new Lena.Router(payload);
+
+  // ok, run now
+  Backbone.history.start({ pushState: true });
+};
