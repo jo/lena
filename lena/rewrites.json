@@ -22,16 +22,21 @@
 
   {
     "from": "/",
-    "to": "_list/home/pages",
+    "to": "_list/page/random",
     "query": {
       "include_docs": "true",
-      "limit": "1"
+      "limit": "100"
     },
     "method": "GET"
   },
   {
+    "from": "/;)",
+    "to": "_show/login",
+    "method": "GET"
+  },
+  {
     "from": "/:folder",
-    "to": "_list/folder/pages",
+    "to": "_list/folder/folders",
     "query": {
       "include_docs": "true",
       "startkey": [":folder"],

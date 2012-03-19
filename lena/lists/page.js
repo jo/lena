@@ -1,7 +1,8 @@
 function(head, req) {
-  var render = require('lib/list').render,
-      docs = [],
-      row;
+  var render = require('lib/render').render,
+      key = Math.round(Math.random() * 100),
+      i = 0,
+      row, doc;
 
   start({
     "headers": {
@@ -10,8 +11,13 @@ function(head, req) {
   });
 
   while(row = getRow()) {
-    docs.push(row.doc);
+    i++;
+    doc = row.doc;
+
+    if (i === key) {
+      break;
+    }
   }
 
-  render(this, req.userCtx, docs);
+  render(this, req.userCtx, { docs: [doc] }, this.templates.show);
 }

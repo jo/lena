@@ -15,11 +15,12 @@
   "templates": <%= map 'templates' %>,
   "views": <%= map 'views' %>,
   "lists": <%= map 'lists' %>,
+  "shows": <%= map 'shows' %>,
   "rewrites": <%= read 'rewrites.json' %>,
   "validate_doc_update": <%=h read 'validate_doc_update.js' %>,
   "lib": {
     "mustache": <%=h read 'vendor/mustache.min.js' %>,
-    "list": <%=h read 'lib/list.js' %>
+    "render": <%=h read 'lib/render.js' %>
   },
 
   "_attachments": {

@@ -1,1 +1,126 @@
 /* Lena Style */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  overflow-y: scroll;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.content {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+menu {
+  display: block;
+  border-bottom: 1px solid black;
+  padding: 1ex 1em;
+  margin: 0;
+}
+menu ul {
+  margin: 0;
+  padding: 0;
+}
+menu li {
+  cursor: pointer;
+  display: inline;
+  margin: 0 1em 0 0;
+}
+header,
+section {
+  display: table-row;
+}
+header > h1,
+section > aside,
+header > nav,
+section > article {
+  display: table-cell;
+  font-size: 1em;
+  padding: 1ex 1em;
+  margin: 0;
+}
+header > h1,
+header > nav {
+  vertical-align: baseline;
+}
+section > aside,
+section > article {
+  vertical-align: top;
+}
+header > h1,
+section > aside {
+  width: 200px;
+  text-align: right;
+}
+
+/* elements */
+header h1 a {
+  font-size: 1.618em;
+  text-decoration: none;
+  color: black;
+}
+header > nav ol {
+  margin: 0;
+  padding: 0;
+}
+header > nav li {
+  display: inline;
+}
+header > nav li a {
+  text-decoration: none;
+}
+header > nav li.current a {
+  color: black;
+}
+section > aside h1,
+section > article h1 {
+  font-size: 1em;
+}
+section > article img {
+  max-width: 100%;
+}
+section > article p {
+  max-width: 55em;
+}
+section > article ol.index {
+  padding: 0;
+  -moz-column-width: 16em;
+  -webkit-column-width: 16em;
+  column-width: 16em;
+  -moz-column-gap: 2em;
+  -webkit-column-gap: 2em;
+  column-gap: 2em;
+  list-style: none;
+}
+section > aside > *:first-child,
+section > article > *:first-child {
+  margin-top: 0;
+}
+
+/* responsiveness */
+@media all and (max-width: 800px) {
+  .content,
+  section,
+  section > aside,
+  section > article {
+    display: block;
+  }
+  header > h1,
+  section > aside {
+    width: auto;
+    text-align: left;
+  }
+}
+@media all and (max-width: 480px) {
+  header,
+  header > h1,
+  header > nav {
+    display: block;
+  }
+}
+

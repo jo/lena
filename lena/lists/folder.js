@@ -1,6 +1,7 @@
 function(head, req) {
-  var render = require('lib/list').render,
-      docs = [],
+  var render = require('lib/render').render,
+      view = { docs: [] },
+      template,
       row;
 
   start({
@@ -10,8 +11,15 @@ function(head, req) {
   });
 
   while(row = getRow()) {
-    docs.push(row.doc);
+    view.docs.push(row.doc);
   }
 
-  render(this, req.userCtx, docs);
+  if (view.docs.length === 1) {
+    view.doc = view.docs[0];
+    template = this.templates.show;
+  } else {
+    template = this.templates.list;
+  }
+
+  render(this, req.userCtx, view, template);
 }
