@@ -6,7 +6,7 @@ Lena.views.Toolbar = Backbone.View.extend({
   },
   
   initialize: function(options) {
-    this.model.on('change:userCtx', this.render, this);
+    // this.model.on('change:userCtx', this.render, this);
   },
   
   view: function() {

@@ -15,35 +15,49 @@ Lena.Router = Backbone.Router.extend({
   index: function() {
     this.view =new Lena.views.Page({
       el: '#app',
-      model: this.session,
-      router: this
+      router: this,
+      session: this.session,
+      ddoc: this.ddoc,
+      collection: new Lena.collections.Random()
     });
-  },
-
-  // login
-  login: function() {
-    this.view =new Lena.views.Login({
-      el: '#app',
-      model: this.session,
-      router: this
-    });
+    this.view.collection.fetch();
   },
 
   // show folder
   folder: function(folder) {
     this.view =new Lena.views.Folder({
       el: '#app',
-      model: this.session,
-      router: this
+      router: this,
+      session: this.session,
+      ddoc: this.ddoc,
+      collection: new Lena.collections.Folders([], {
+        folder: folder
+      })
     });
+    this.view.collection.fetch();
   },
 
   // show page
   page: function(folder, page) {
     this.view =new Lena.views.Page({
       el: '#app',
-      model: this.session,
-      router: this
+      router: this,
+      session: this.session,
+      ddoc: this.ddoc,
+      collection: new Lena.collections.Pages([], {
+        folder: folder,
+        page: page
+      })
+    });
+    this.view.collection.fetch();
+  },
+
+  // login
+  login: function() {
+    this.view =new Lena.views.Login({
+      el: '#app',
+      router: this,
+      model: this.session
     });
   }
 })

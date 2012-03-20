@@ -30,7 +30,7 @@ exports.render = function(ddoc, userCtx, view, partial) {
 
   render(ddoc.templates.index, view, {
     toolbar: ddoc.templates.toolbar,
-    header: ddoc.templates.header,
+    menu: ddoc.templates.menu,
     content: partial
   }, send);
 };

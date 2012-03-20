@@ -45,6 +45,10 @@ data["docs"].each do |doc|
 
   # texts
   doc["subtitle"] = doc["location"]
+  doc["title"].gsub!(/\d\/\d/, '')
+  doc["title"].gsub!(/,\s+/, ' ')
+  doc["title"] ||= "unknown"
+  doc["title"].strip!
   doc.delete("location")
 
   doc["aside"] = "<h1>#{doc["title"]}</h1><p>#{doc["desc"]}</p>"
