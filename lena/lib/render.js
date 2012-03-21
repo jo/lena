@@ -6,6 +6,7 @@ exports.render = function(ddoc, userCtx, view, partial) {
   view.author = ddoc.author;
   view.username = userCtx.name;
   view.folders = [];
+  view.docs || (view.docs = []);
   view.docs.forEach(function(doc) {
     doc.url = '/' + encodeURIComponent(doc.folder) + '/' + encodeURIComponent(doc.title);
 
