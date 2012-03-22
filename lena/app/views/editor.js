@@ -11,8 +11,10 @@ Lena.views.Editor = Backbone.View.extend({
   },
 
   save: _.throttle(_.debounce(function(e) {
-    var element = $(e.target);
+    var element = $(e.target),
+        id = element.data('id'),
+        attr = element.data('attr');
         
-    this.pages.update(element.data('id'), element.data('attr'), element.html());
+    id && attr && this.pages.update(id, attr, element.html());
   }, 300), 1000)
 });

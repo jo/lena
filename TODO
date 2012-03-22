@@ -10,3 +10,5 @@ https://github.com/janl/mustache.js/issues/189
 
 When Couchbase updates BigCouch,
 use commonjs module url in views and remove erb hack.
+
+Add CSS vendor prefixes (for border-radius and evtl. others)

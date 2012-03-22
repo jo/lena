@@ -8,7 +8,7 @@ body {
 }
 body {
   overflow-y: scroll;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 2.9ex;
 }
 .content {
@@ -31,6 +31,7 @@ section > article {
 }
 header > h1,
 header > nav {
+  padding-top: 3ex;
   vertical-align: baseline;
 }
 section > aside,
