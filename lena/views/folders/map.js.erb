@@ -1,0 +1,7 @@
+function(doc) {
+  var toParam = <%= read('../../lib/to-param.js') %>;
+
+  if (doc.type === 'page') {
+    emit([toParam(doc.folder), doc.position], null);
+  }
+}

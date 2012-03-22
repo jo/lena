@@ -69,13 +69,15 @@ def map dirname, indent = 2
   Dir.entries(dirname).each do |f|
     next if f =~ /^\./
     file = File.join(dirname, f)
+    f.sub!(/\.erb$/, '')
+    f.sub!(/#{Regexp.escape File.extname(f)}$/, '')
 
     if omit_comma
       omit_comma = false
     else
       out << ",\n"
     end
-    out << ' '*indent + '  "%s": ' % f.sub(/#{Regexp.escape File.extname(f)}$/, '')
+    out << ' '*indent + '  "%s": ' % f
     if File.directory?(file)
       out << map(file, indent + 2)
     else

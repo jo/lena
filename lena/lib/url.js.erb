@@ -3,12 +3,7 @@
 
   // eg
   // 'Ich bin 1/3!' -> 'ich-bin-1-3'
-  url.toParam = function(string) {
-    return string.
-      replace(/\W+/g, '-').
-      replace(/(^[-\s]+)|([-\s]+$)/, '').
-      toLowerCase();
-  };
+  url.toParam = <%= read('to-param.js') %>;
 
   // check if param pairs match,
   // eg

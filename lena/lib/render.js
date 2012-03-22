@@ -1,5 +1,5 @@
 exports.render = function(ddoc, userCtx, view, partial) {
-  var url = require('views/lib/url'),
+  var url = require('lib/url'),
       render = require('lib/mustache').to_html;
 
   view.title = ddoc.title;
