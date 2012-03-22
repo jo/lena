@@ -1,5 +1,5 @@
 Lena.helpers.image = (function() {
-  var maxWidth = 1024;
+  var maxWidth = 600;
 
   // crop via canvas
   function crop(options) {

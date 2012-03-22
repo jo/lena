@@ -6,6 +6,7 @@
       {{#editing}}
         <li data-action=destroy>Delete</li>
       {{/editing}}
+      <li data-action=logout>Logout</li>
     </ul>
     {{#editing}}
       <p class=format>
@@ -20,9 +21,6 @@
         {{/images}}
       </p>
     {{/editing}}
-    <ul>
-      <li data-action=logout>Logout</li>
-    </ul>
     <form data-dialog=create style="display:none">
       <fieldset>
         <legend>New Page</legend>
