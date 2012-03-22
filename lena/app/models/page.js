@@ -18,5 +18,17 @@ Lena.models.Page = Backbone.Model.extend({
     }
 
     return true;
+  },
+
+  images: function() {
+    var attachments = this.get('_attachments'),
+        doc = this.toJSON();
+
+    return _.map(attachments, function(attachment, name) {
+      return {
+        name: name,
+        url: Lena.helpers.url.image(doc, name)
+      };
+    });
   }
 });

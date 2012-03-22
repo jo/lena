@@ -4,14 +4,19 @@
       <li data-action=new>New</li>
       <li data-action=settings>Settings</li>
     </ul>
-    <p class=format>
-      <button data-command=formatBlock data-value=H1>H</button>
-      <button data-command=formatBlock data-value=P>P</button>
-      <button data-command=bold>b</button>
-      <button data-command=italic>i</button>
-      <button data-command=underline>u</button>
-      <button data-command=insertUnorderedList>&equiv;</button>
-    </p>
+    {{#editing}}
+      <p class=format>
+        <button data-command=formatBlock data-value=H1>H</button>
+        <button data-command=formatBlock data-value=P>P</button>
+        <button data-command=bold>b</button>
+        <button data-command=italic>i</button>
+        <button data-command=underline>u</button>
+        <button data-command=insertUnorderedList>&equiv;</button>
+        {{#images}}
+          <button><img data-command=insertHTML data-value="<img src='{{url}}'>" src="{{url}}"></button>
+        {{/images}}
+      </p>
+    {{/editing}}
     <ul>
       <li data-action=logout>Logout</li>
     </ul>

@@ -31,6 +31,12 @@
   url.page = function(model) {
     return '/' + url.toParam(model.folder) + '/' + url.toParam(model.title);
   };
+  
+  // return url for image,
+  // eg /portraits/1-3-niobe/acd987/myfile.png
+  url.image = function(model, name) {
+    return '/' + url.toParam(model.folder) + '/' + url.toParam(model.title) + '/' + encodeURIComponent(model._id) + '/' + encodeURIComponent(name);
+  };
 
   return url;
 })(typeof module !== 'undefined' && module.exports ? exports : {});

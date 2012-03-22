@@ -16,60 +16,6 @@ body {
   width: 100%;
   border-collapse: collapse;
 }
-menu {
-  display: block;
-  padding: 0.5ex 1em;
-  margin: 0;
-  border-bottom: 1px solid #b8b8b7;
-  background-color: #edeceb;
-  text-shadow: 1px 1px 1px white;
-  font-weight: bold;
-  font-size: 0.8em;
-  font-family: sans-serif;
-  color: #666;
-}
-menu ul {
-  padding: 0 1em;
-  border-left: 1px dotted silver;
-  display: inline;
-}
-menu ul:first-child {
-  padding-left: 0;
-  border-left: none;
-}
-menu li {
-  cursor: pointer;
-  display: inline;
-  margin: 0 0.5em;
-}
-p.format {
-  padding: 0 1em;
-  border-left: 1px dotted silver;
-  display: inline;
-}
-p.format button {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  margin: 0;
-  color: #666;
-}
-menu li:hover,
-menu button:hover {
-  color: #333;
-}
-button[data-command=formatBlock][data-value=H1] {
-  font-weight: bold;
-}
-button[data-command=bold] {
-  font-weight: bold;
-}
-button[data-command=italic] {
-  font-style: italic;
-}
-button[data-command=underline] {
-  text-decoration: underline;
-}
 header,
 section {
   display: table-row;
@@ -120,6 +66,7 @@ section > aside h1,
 section > article h1 {
   font-size: 1em;
 }
+section > aside img,
 section > article img {
   max-width: 100%;
 }

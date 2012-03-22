@@ -1,0 +1,60 @@
+menu {
+  display: block;
+  padding: 0.5ex 1em;
+  margin: 0;
+  border-bottom: 1px solid #b8b8b7;
+  background-color: #edeceb;
+  font-weight: bold;
+  font-size: 0.8em;
+  font-family: sans-serif;
+}
+menu ul,
+p.format {
+  padding: 0 1em;
+  border-left: 1px dotted silver;
+  display: inline;
+}
+menu ul:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+menu li,
+menu button {
+  cursor: pointer;
+  display: inline;
+  margin: 0 0.5em;
+  text-shadow: 1px 1px 1px white;
+  color: #666;
+}
+menu button {
+  border: none;
+  background-color: transparent;
+  margin: 0;
+}
+menu li:hover,
+menu button:hover {
+  color: #333;
+}
+
+menu button[data-command=formatBlock][data-value=H1] {
+  font-weight: bold;
+}
+menu button[data-command=bold] {
+  font-weight: bold;
+}
+menu button[data-command=italic] {
+  font-style: italic;
+}
+menu button[data-command=underline] {
+  text-decoration: underline;
+}
+
+menu img[data-command] {
+  height: 2.2ex;
+  opacity: 0.7;
+  margin-bottom: -4px;
+  box-shadow: 1px 1px 1px white;
+}
+menu img[data-command]:hover {
+  opacity: 1;
+}

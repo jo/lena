@@ -3,6 +3,12 @@ Lena.collections.Pages = Backbone.Collection.extend({
 
   url: '/api/pages',
 
+  initialize: function() {
+    this.on('reset', function() {
+      delete this._docs;
+    }, this);
+  },
+
   setScope: function(folder, page) {
     this.folder = folder;
     this.page = page;
@@ -20,7 +26,7 @@ Lena.collections.Pages = Backbone.Collection.extend({
     ];
   },
 
-  docs: function() {
+  getDocs: function() {
     if (this.length === 0) {
       return [];
     }
@@ -32,6 +38,18 @@ Lena.collections.Pages = Backbone.Collection.extend({
     return this.filter(function(model) {
       return model.match(this.folder, this.page);
     }, this);
+  },
+
+  docs: function() {
+    if (!this._docs) {
+      this._docs = this.getDocs();
+    }
+
+    return this._docs;
+  },
+
+  images: function() {
+    return _.flatten(_.invoke(this.docs(), 'images'));
   },
 
   folders: function() {
