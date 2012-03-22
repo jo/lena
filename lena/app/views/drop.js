@@ -34,7 +34,7 @@ Lena.views.Drop = Backbone.View.extend({
       return;
     }
 
-    if (element.hasAttribute('data-id')) {
+    if ($(element).data('id')) {
       return element;
     }
 
