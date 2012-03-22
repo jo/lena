@@ -1,12 +1,7 @@
 function(doc) {
-  function toParam(string) {
-    return string.
-      replace(/\W+/g, '-').
-      replace(/(^[-\s]+)|([-\s]+$)/, '').
-      toLowerCase();
-  }
+  var url = require('views/lib/url');
 
   if (doc.type === 'page') {
-    emit([toParam(doc.folder), toParam(doc.title)], null);
+    emit([url.toParam(doc.folder), url.toParam(doc.title)], null);
   }
 }

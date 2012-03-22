@@ -1,5 +1,7 @@
 function(doc) {
+  var url = require('views/lib/url');
+
   if (doc.type === 'page') {
-    emit([doc.folder, doc.position], null);
+    emit([url.toParam(doc.folder), doc.position], null);
   }
 }

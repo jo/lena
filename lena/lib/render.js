@@ -1,5 +1,6 @@
 exports.render = function(ddoc, userCtx, view, partial) {
-  var render = require('lib/mustache').to_html;
+  var url = require('views/lib/url'),
+      render = require('lib/mustache').to_html;
 
   view.title = ddoc.title;
   view.description = ddoc.description;
@@ -8,7 +9,7 @@ exports.render = function(ddoc, userCtx, view, partial) {
   view.folders = [];
   view.docs || (view.docs = []);
   view.docs.forEach(function(doc) {
-    doc.url = '/' + encodeURIComponent(doc.folder) + '/' + encodeURIComponent(doc.title);
+    doc.url = url.page(doc);
 
     if (view.folders.indexOf(doc.folder) === -1) {
       view.folders.push(doc.folder);
