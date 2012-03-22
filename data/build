@@ -46,9 +46,11 @@ data["docs"].each do |doc|
   # texts
   doc["subtitle"] = doc["location"]
   doc.delete("location")
+  doc["title"].gsub!(/\d\/\d/, '') if doc["title"]
+  doc["title"].strip! if doc["title"]
 
   doc["aside"] = "<h1>#{doc["title"]}</h1><p>#{doc["desc"]}</p>"
-  doc["article"] = "<img src=\"/#{CGI.escape doc["folder"]}/#{CGI.escape doc["title"]}/#{CGI.escape doc["_id"]}/#{CGI.escape filename}\">"
+  doc["article"] = "<img src=\"/#{CGI.escape doc["folder"]}/#{CGI.escape doc["_id"]}/#{CGI.escape filename}\">"
 end
 
 # references

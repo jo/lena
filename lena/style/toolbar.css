@@ -7,26 +7,30 @@ menu {
   font-weight: bold;
   font-size: 0.8em;
   font-family: sans-serif;
+  vertical-align: baseline;
 }
-menu ul,
-menu p {
+menu > ul,
+menu > p {
   padding: 0 1em;
   border-left: 1px dotted silver;
-  display: inline;
+  display: inline-block;
+  vertical-align: baseline;
+  margin: 0;
 }
-menu *:first-child {
+menu > *:first-child {
   padding-left: 0;
   border-left: none;
 }
 menu li,
 menu button {
   cursor: pointer;
-  display: inline;
+  display: inline-block;
   margin: 0 0.5em;
   text-shadow: 1px 1px 1px white;
   color: #666;
   min-width: 1.2em;
-  min-height: 2ex;
+  height: 2.5ex;
+  vertical-align: baseline;
 }
 menu li.logo:hover,
 menu li.logo {
@@ -65,3 +69,25 @@ menu button[data-command=insertImage] {
   border-radius: 2px;
 }
 
+menu fieldset {
+  margin: 1ex 0.5em;
+  padding: 1ex 1em;
+  border-radius: 3px;
+  border: 1px solid white;
+}
+menu form legend {
+  color: #999;
+  text-shadow: 1px 1px 1px white;
+  cursor: default;
+}
+menu form label {
+  font-weight: normal;
+  color: #aaa;
+  min-width: 4em;
+  display: inline-block;
+  text-align: right;
+  text-shadow: 1px 1px 1px white;
+}
+menu form input[type=text] {
+  margin: 0 1em;
+}

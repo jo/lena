@@ -2,8 +2,7 @@
   <menu type=toolbar>
     <ul>
       <li class=logo>TF</li>
-      <li data-action=settings>Settings</li>
-      <li data-action=new>New</li>
+      <li data-action=create>New</li>
       {{#editing}}
         <li data-action=destroy>Delete</li>
       {{/editing}}
@@ -22,7 +21,25 @@
       </p>
     {{/editing}}
     <ul>
+      <li data-action=settings>Settings</li>
       <li data-action=logout>Logout</li>
     </ul>
+    <form data-dialog=create style="display:none">
+      <fieldset>
+        <legend>New Page</legend>
+        <p>
+          <label>Folder</label>
+          <input type=text name=folder required pattern="[^\/]+">
+          {{#folders}}
+            <button data-folder="{{.}}">{{.}}</button>
+          {{/folders}}
+        </p>
+        <p>
+          <label>Title</label>
+          <input type=text name=title required>
+          <input type=submit value="Create Page">
+        </p>
+      </fieldset>
+    </form>
   </menu>
 {{/username}}

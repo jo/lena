@@ -29,6 +29,11 @@
     "method": "GET"
   },
   {
+    "from": "/api/pages",
+    "to": "../../",
+    "method": "POST"
+  },
+  {
     "from": "/api/pages/:id",
     "to": "../../:id"
   },
@@ -58,17 +63,16 @@
     "method": "GET"
   },
   {
-    "from": "/:folder/:title",
+    "from": "/:folder/:id",
     "to": "_list/page/pages",
     "query": {
       "include_docs": "true",
-      "startkey": [":folder", ":title"],
-      "endkey": [":folder", ":title", {}]
+      "key": [":folder", ":id"]
     },
     "method": "GET"
   },
   {
-    "from": "/:folder/:title/:id/:filename",
+    "from": "/:folder/:id/:filename",
     "to": "../../:id/:filename",
     "method": "GET"
   }

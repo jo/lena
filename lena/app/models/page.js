@@ -7,7 +7,7 @@ Lena.models.Page = Backbone.Model.extend({
     if (page) {
       return Lena.helpers.url.match([
         [folder, this.get('folder')],
-        [page, this.get('title')]
+        [page, this.id]
       ]);
     }
 
