@@ -19,17 +19,45 @@ body {
 menu {
   display: block;
   border-bottom: 1px solid black;
-  padding: 1ex 1em;
+  padding: 0.5ex 1em;
   margin: 0;
+  color: #333;
 }
 menu ul {
-  margin: 0;
+  margin: 0 1em 0 0;
   padding: 0;
+  display: inline;
 }
 menu li {
   cursor: pointer;
   display: inline;
   margin: 0 1em 0 0;
+}
+menu li:hover {
+  color: #000;
+}
+ul.format {
+  margin: 0 2em 0 0;
+}
+ul.format li {
+  width: 1.2em;
+  display: inline-block;
+  text-align: center;
+  border-radius: 3px;
+  margin: 0;
+  text-shadow: 1px 1px 1px #aaa;
+}
+li[data-action=heading] {
+  font-weight: bold;
+}
+li[data-action=bold] {
+  font-weight: bold;
+}
+li[data-action=italic] {
+  font-style: italic;
+}
+li[data-action=underline] {
+  text-decoration: underline;
 }
 header,
 section {
