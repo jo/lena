@@ -5,11 +5,16 @@ Lena.models.Page = Backbone.Model.extend({
 
   match: function(folder, page) {
     if (page) {
-      return folder === this.get('folder') && page === this.get('title');
+      return Lena.helpers.url.match([
+        [folder, this.get('folder')],
+        [page, this.get('title')]
+      ]);
     }
 
     if (folder) {
-      return folder === this.get('folder');
+      return Lena.helpers.url.match([
+        [folder, this.get('folder')]
+      ]);
     }
 
     return true;

@@ -19,5 +19,5 @@ function(head, req) {
     }
   }
 
-  render(this, req.userCtx, { docs: [doc] }, this.templates.show);
+  render(this, req.userCtx, { docs: doc ? [doc] : [] }, this.templates.show);
 }

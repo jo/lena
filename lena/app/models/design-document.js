@@ -7,9 +7,9 @@ Lena.models.DesignDocument = Backbone.Model.extend({
 
     return _.map(view, function(entry) {
       return {
-        url: '/' + encodeURIComponent(entry),
+        url: '/' + Lena.helpers.url.folder(entry),
         title: entry,
-        current: current.indexOf(entry) > -1
+        current: _.any(current, function(folder) { return Lena.helpers.url.match([[folder, entry]]); })
       };
     });
   }

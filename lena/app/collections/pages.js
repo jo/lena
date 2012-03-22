@@ -35,7 +35,7 @@ Lena.collections.Pages = Backbone.Collection.extend({
   },
 
   folders: function() {
-    return _.uniq(_.pluck(this.docs(), 'folder'));
+    return _.compact(_.uniq(_.invoke(this.docs(), 'get', 'folder')));
   },
 
   single: function() {
@@ -44,7 +44,7 @@ Lena.collections.Pages = Backbone.Collection.extend({
 
   toJSON: function() {
     return this.docs().map(function(model) {
-      return _.extend(model.toJSON(), { url: '/' + encodeURIComponent(model.get('folder')) + '/' + encodeURIComponent(model.get('title')) });
+      return _.extend(model.toJSON(), { url: Lena.helpers.url.page(model) });
     });
   }
 });
