@@ -5,10 +5,6 @@ Lena.views.Login = Backbone.View.extend({
     'submit form.login': 'login'
   },
   
-  initialize: function(options) {
-    this.model.on('change:userCtx', this.render, this);
-  },
-
   render: function() {
     if (this.model.username()) {
       window.location.replace('/');

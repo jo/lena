@@ -23,13 +23,10 @@ Lena.views.Folder = Backbone.View.extend({
         model: this.session
       })
     };
-    
-    this.session.on('change:userCtx', this.render, this);
-    this.collection.on('reset', this.render, this);
   },
 
   render: function() {
-    this.subviews.content = this.contentViews[this.collection.length === 1 ? 'show' : 'list'];
+    this.subviews.content = this.contentViews[this.collection.single() ? 'show' : 'list'];
 
     return Backbone.View.prototype.render.call(this);
   }

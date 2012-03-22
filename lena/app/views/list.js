@@ -21,9 +21,7 @@ Lena.views.List = Backbone.View.extend({
   view: function() {
     return {
       title: this.ddoc.get('title'),
-      docs: this.collection.map(function(model) {
-        return _.extend(model.toJSON(), { url: '/' + encodeURIComponent(model.get('folder')) + '/' + encodeURIComponent(model.get('title')) });
-      })
+      docs: this.collection.toJSON()
     };
   },
   

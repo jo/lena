@@ -21,31 +21,10 @@
   },
 
   {
-    "from": "/api/random",
-    "to": "_view/random",
-    "query": {
-      "include_docs": "true",
-      "limit": "1"
-    },
-    "method": "GET"
-  },
-  {
-    "from": "/api/folders/:folder",
+    "from": "/api/pages",
     "to": "_view/folders",
     "query": {
-      "include_docs": "true",
-      "startkey": [":folder"],
-      "endkey": [":folder", {}]
-    },
-    "method": "GET"
-  },
-  {
-    "from": "/api/pages/:folder/:title",
-    "to": "_view/pages",
-    "query": {
-      "include_docs": "true",
-      "startkey": [":folder", ":title"],
-      "endkey": [":folder", ":title", {}]
+      "include_docs": "true"
     },
     "method": "GET"
   },

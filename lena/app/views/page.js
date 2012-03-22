@@ -16,8 +16,5 @@ Lena.views.Page = Backbone.View.extend({
         collection: this.collection
       })
     };
-    
-    this.session.on('change:userCtx', this.render, this);
-    this.collection.on('reset', this.render, this);
   }
 });
