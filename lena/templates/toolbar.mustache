@@ -4,7 +4,9 @@
       <li class=logo>TF</li>
       <li data-action=settings>Settings</li>
       <li data-action=new>New</li>
-      <li data-action=destroy>Delete</li>
+      {{#editing}}
+        <li data-action=destroy>Delete</li>
+      {{/editing}}
     </ul>
     {{#editing}}
       <p class=format>

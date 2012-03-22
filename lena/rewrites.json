@@ -30,8 +30,7 @@
   },
   {
     "from": "/api/pages/:id",
-    "to": "../../:id",
-    "method": "PUT"
+    "to": "../../:id"
   },
 
   {

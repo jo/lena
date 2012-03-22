@@ -3,9 +3,9 @@ Lena.views.Page = Backbone.View.extend({
 
   initialize: function(options) {
     this.subviews = {
-      toolbar: new Lena.views.Toolbar(options),
-      content: new Lena.views.Show(options),
+      content: new Lena.views.Show(options)
     };
+
     new Lena.views.Editor(options)
   }
 });

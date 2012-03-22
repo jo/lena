@@ -9,7 +9,9 @@ Lena.views.App = Backbone.View.extend({
       login: new Lena.views.Login(options)
     };
 
-    this.subviews = {};
+    this.subviews = {
+      toolbar: new Lena.views.Toolbar(options)
+    };
     
     this.session.on('change:userCtx', this.render, this);
     this.pages.on('reset', this.render, this);

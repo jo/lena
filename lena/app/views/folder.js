@@ -7,9 +7,7 @@ Lena.views.Folder = Backbone.View.extend({
       list: new Lena.views.List(options)
     };
 
-    this.subviews = {
-      toolbar: new Lena.views.Toolbar(options)
-    };
+    this.subviews = {};
   },
 
   render: function() {
