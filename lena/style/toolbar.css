@@ -9,12 +9,12 @@ menu {
   font-family: sans-serif;
 }
 menu ul,
-p.format {
+menu p {
   padding: 0 1em;
   border-left: 1px dotted silver;
   display: inline;
 }
-menu ul:first-child {
+menu *:first-child {
   padding-left: 0;
   border-left: none;
 }
@@ -25,6 +25,15 @@ menu button {
   margin: 0 0.5em;
   text-shadow: 1px 1px 1px white;
   color: #666;
+  min-width: 1.2em;
+  min-height: 2ex;
+}
+menu li.logo:hover,
+menu li.logo {
+  color: white;
+  text-shadow: 1px 1px 1px #ccc;
+  letter-spacing: -0.1em;
+  cursor: default;
 }
 menu button {
   border: none;
@@ -48,13 +57,11 @@ menu button[data-command=italic] {
 menu button[data-command=underline] {
   text-decoration: underline;
 }
+menu button[data-command=insertImage] {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+  min-width: 2em;
+  border-radius: 2px;
+}
 
-menu img[data-command] {
-  height: 2.2ex;
-  opacity: 0.7;
-  margin-bottom: -4px;
-  box-shadow: 1px 1px 1px white;
-}
-menu img[data-command]:hover {
-  opacity: 1;
-}

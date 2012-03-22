@@ -69,6 +69,13 @@ section > article h1 {
 section > aside img,
 section > article img {
   max-width: 100%;
+  display: table;
+}
+section > aside img {
+  float: right;
+}
+section > article img {
+  float: left;
 }
 section > article p {
   max-width: 55em;

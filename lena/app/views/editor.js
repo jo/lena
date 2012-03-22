@@ -1,6 +1,7 @@
 Lena.views.Editor = Backbone.View.extend({
   events: {
     'blur [contenteditable]': 'save',
+    'click [contenteditable]': 'save',
     'keyup [contenteditable]': 'save'
   },
   
