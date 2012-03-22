@@ -24,39 +24,43 @@ menu {
   color: #333;
 }
 menu ul {
-  margin: 0 1em 0 0;
-  padding: 0;
+  padding: 0 1em;
+  border-left: 1px dotted silver;
   display: inline;
+}
+menu ul:first-child {
+  padding-left: 0;
+  border-left: none;
 }
 menu li {
   cursor: pointer;
   display: inline;
-  margin: 0 1em 0 0;
+  margin: 0 0.5em;
 }
 menu li:hover {
   color: #000;
 }
-ul.format {
-  margin: 0 2em 0 0;
+p.format {
+  padding: 0 1em;
+  border-left: 1px dotted silver;
+  display: inline;
 }
-ul.format li {
-  width: 1.2em;
-  display: inline-block;
-  text-align: center;
-  border-radius: 3px;
+p.format button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
   margin: 0;
-  text-shadow: 1px 1px 1px #aaa;
 }
-li[data-action=heading] {
+button[data-command=formatBlock][data-value=H1] {
   font-weight: bold;
 }
-li[data-action=bold] {
+button[data-command=bold] {
   font-weight: bold;
 }
-li[data-action=italic] {
+button[data-command=italic] {
   font-style: italic;
 }
-li[data-action=underline] {
+button[data-command=underline] {
   text-decoration: underline;
 }
 header,

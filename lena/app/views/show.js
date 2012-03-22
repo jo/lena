@@ -9,8 +9,6 @@ Lena.views.Show = Backbone.View.extend({
     this.subviews = {
       menu: new Lena.views.Menu(options)
     };
-
-    new Lena.views.Editor(options);
   },
   
   view: function() {
