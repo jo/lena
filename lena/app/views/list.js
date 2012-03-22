@@ -8,20 +8,17 @@ Lena.views.List = Backbone.View.extend({
   initialize: function(options) {
     this.ddoc = options.ddoc;
     this.router = options.router;
+    this.pages = options.pages;
 
     this.subviews = {
-      menu: new Lena.views.Menu({
-        model: this.ddoc,
-        collection: this.collection,
-        router: this.router
-      })
+      menu: new Lena.views.Menu(options)
     };
   },
   
   view: function() {
     return {
       title: this.ddoc.get('title'),
-      docs: this.collection.toJSON()
+      docs: this.pages.toJSON()
     };
   },
   

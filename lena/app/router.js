@@ -9,35 +9,35 @@ Lena.Router = Backbone.Router.extend({
   initialize: function(payload) {
     this.ddoc = new Lena.models.DesignDocument(payload.ddoc);
     this.session = new Lena.models.Session(payload.session);
-    this.collection = new Lena.collections.Pages();
+    this.pages = new Lena.collections.Pages();
 
     this.view = new Lena.views.App({
       el: document.body,
       router: this,
       session: this.session,
       ddoc: this.ddoc,
-      collection: this.collection
+      pages: this.pages
     });
 
-    this.collection.fetch();
+    this.pages.fetch();
   },
 
   // home page
   index: function() {
     this.view.setAppView('page');
-    this.collection.setScope();
+    this.pages.setScope();
   },
 
   // show folder
   folder: function(folder) {
     this.view.setAppView('folder');
-    this.collection.setScope(folder);
+    this.pages.setScope(folder);
   },
 
   // show page
   page: function(folder, page) {
     this.view.setAppView('page');
-    this.collection.setScope(folder, page);
+    this.pages.setScope(folder, page);
   },
 
   // login

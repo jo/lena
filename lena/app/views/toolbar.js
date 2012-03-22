@@ -5,14 +5,18 @@ Lena.views.Toolbar = Backbone.View.extend({
     'click [data-action=logout]': 'logout'
   },
   
+  initialize: function(options) {
+    this.session = options.session;
+  },
+  
   view: function() {
     return {
-      username: this.model.username()
+      username: this.session.username()
     };
   },
   
   logout: function() {
-    this.model.logout();
+    this.session.logout();
     this.render();
   }
 });

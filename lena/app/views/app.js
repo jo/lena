@@ -1,22 +1,18 @@
 Lena.views.App = Backbone.View.extend({
   initialize: function(options) {
-    this.router = options.router;
     this.session = options.session;
-    this.ddoc = options.ddoc;
+    this.pages = options.pages;
 
     this.appViews = {
       page: new Lena.views.Page(options),
       folder: new Lena.views.Folder(options),
-      login: new Lena.views.Login({
-        router: this,
-        model: this.session
-      })
+      login: new Lena.views.Login(options)
     };
 
     this.subviews = {};
     
     this.session.on('change:userCtx', this.render, this);
-    this.collection.on('reset', this.render, this);
+    this.pages.on('reset', this.render, this);
   },
 
   setAppView: function(name) {

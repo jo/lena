@@ -4,9 +4,13 @@ Lena.views.Login = Backbone.View.extend({
   events: {
     'submit form.login': 'login'
   },
+
+  initialize: function(options) {
+    this.session = options.session
+  },
   
   render: function() {
-    if (this.model.username()) {
+    if (this.session.username()) {
       window.location.replace('/');
 
       return this;
@@ -16,7 +20,7 @@ Lena.views.Login = Backbone.View.extend({
   },
 
   login: function() {
-    this.model.login(this.$('[name=username]').val(), this.$('[name=password]').val());
+    this.session.login(this.$('[name=username]').val(), this.$('[name=password]').val());
 
     return false;
   }

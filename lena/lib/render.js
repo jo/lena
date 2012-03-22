@@ -6,6 +6,7 @@ exports.render = function(ddoc, userCtx, view, partial) {
   view.description = ddoc.description;
   view.author = ddoc.author;
   view.username = userCtx.name;
+  view.editable = userCtx.roles && userCtx.roles.indexOf('_admin') > -1;
   view.folders = [];
   view.docs || (view.docs = []);
   view.docs.forEach(function(doc) {

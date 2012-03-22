@@ -2,22 +2,22 @@ Lena.views.Show = Backbone.View.extend({
   template: 'show',
 
   initialize: function(options) {
+    this.session = options.session;
     this.ddoc = options.ddoc;
-    this.router = options.router;
+    this.pages = options.pages;
 
     this.subviews = {
-      menu: new Lena.views.Menu({
-        model: this.ddoc,
-        collection: this.collection,
-        router: this.router
-      })
+      menu: new Lena.views.Menu(options)
     };
+
+    new Lena.views.Editor(options);
   },
   
   view: function() {
     return {
       title: this.ddoc.get('title'),
-      docs: this.collection.toJSON()
+      editable: this.session.isAdmin(),
+      docs: this.pages.toJSON()
     };
   }
 });

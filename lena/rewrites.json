@@ -28,6 +28,11 @@
     },
     "method": "GET"
   },
+  {
+    "from": "/api/pages/:id",
+    "to": "../../:id",
+    "method": "PUT"
+  },
 
   {
     "from": "/",

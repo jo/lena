@@ -48,5 +48,18 @@ Lena.collections.Pages = Backbone.Collection.extend({
 
       return _.extend(doc, { url: Lena.helpers.url.page(doc) });
     });
+  },
+
+  update: function(id, key, value) {
+    var model = this.get(id),
+        attributes = {};
+
+    if (model.get(key) === value) {
+      return;
+    }
+    
+    attributes[key] = value;
+
+    model.save(attributes);
   }
 });

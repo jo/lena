@@ -6,12 +6,14 @@ Lena.views.Menu = Backbone.View.extend({
   },
   
   initialize: function(options) {
+    this.ddoc = options.ddoc;
     this.router = options.router;
+    this.pages = options.pages;
   },
   
   view: function() {
     return {
-      menu: this.model.menu(this.collection.folders())
+      menu: this.ddoc.menu(this.pages.folders())
     };
   },
   
