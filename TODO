@@ -1,0 +1,12 @@
+TODO
+====
+
+Backwards compatibility hacks
+-----------------------------
+
+When Couchbase updates its SpiderMonkey,
+update mustache from 0.4 to 0.5
+https://github.com/janl/mustache.js/issues/189
+
+When Couchbase updates BigCouch,
+use commonjs module url in views and remove erb hack.
