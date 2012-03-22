@@ -8,6 +8,7 @@ Lena.views.Show = Backbone.View.extend({
     this.subviews = {
       menu: new Lena.views.Menu({
         model: this.ddoc,
+        collection: this.collection,
         router: this.router
       })
     };
