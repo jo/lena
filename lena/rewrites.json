@@ -45,7 +45,7 @@
     "query": {
       "include_docs": "true",
       "startkey": [":folder", ":title"],
-      "limit": "1"
+      "endkey": [":folder", ":title", {}]
     },
     "method": "GET"
   },
