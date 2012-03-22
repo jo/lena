@@ -7,5 +7,6 @@ Lena.views.Page = Backbone.View.extend({
     };
 
     new Lena.views.Editor(options)
+    new Lena.views.Drop(options)
   }
 });

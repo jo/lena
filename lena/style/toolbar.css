@@ -85,9 +85,24 @@ menu form label {
   color: #aaa;
   min-width: 4em;
   display: inline-block;
-  text-align: right;
+  margin: 0 1em 0 0;
   text-shadow: 1px 1px 1px white;
 }
 menu form input[type=text] {
-  margin: 0 1em;
+  margin: 0 1em 0 0;
+  max-width: 70%;
+  min-width: 4em;
+}
+menu form input[type=submit] {
+  margin-top: 1ex;
+}
+menu .info {
+  color: #999;
+  text-shadow: 1px 1px 1px white;
+  font-weight: normal;
+  cursor: default;
+}
+
+.dragover {
+  outline: 1px dashed black;
 }

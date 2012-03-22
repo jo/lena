@@ -14,6 +14,8 @@ Lena.views.Toolbar = Backbone.View.extend({
     this.router = options.router;
     this.session = options.session;
     this.pages = options.pages;
+
+    this.pages.on('upload', this.render, this);
   },
   
   view: function() {
