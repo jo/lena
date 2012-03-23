@@ -1,13 +1,13 @@
 {{#username}}
   <menu type=toolbar>
-    <ul>
-      <li class=logo>TF</li>
-      <li data-action=create>New</li>
+    <p>
+      <button class=logo>TF</button>
+      <button data-action=create>New</button>
       {{#editing}}
-        <li data-action=destroy>Delete</li>
+        <button data-action=destroy>Delete</button>
       {{/editing}}
-      <li data-action=logout>Logout</li>
-    </ul>
+      <button data-action=logout>Logout</button>
+    </p>
     {{#editing}}
       <p class=format>
         <button data-command=formatBlock data-value=H1>H</button>
@@ -16,11 +16,14 @@
         <button data-command=italic>i</button>
         <button data-command=underline>u</button>
         <button data-command=insertUnorderedList>&equiv;</button>
+      </p>
+      <p class=images>
         {{#images}}
           <button data-command=insertImage data-value="{{url}}" style="background-image: url({{url}})"></button>
         {{/images}}
       </p>
     {{/editing}}
+    <p id=info class=info></p>
     <form data-dialog=create style="display:none">
       <fieldset>
         <legend>New Page</legend>
@@ -38,6 +41,5 @@
         </p>
       </fieldset>
     </form>
-    <p id=info class=info></p>
   </menu>
 {{/username}}

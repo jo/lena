@@ -1,54 +1,65 @@
 menu {
   display: block;
-  padding: 0.5ex 1em;
   margin: 0;
+  padding: 0;
   border-bottom: 1px solid #b8b8b7;
-  background-color: #edeceb;
+  background-color: white;
   font-weight: bold;
   font-size: 0.8em;
   font-family: sans-serif;
-  vertical-align: baseline;
+  vertical-align: middle;
 }
-menu > ul,
 menu > p {
-  padding: 0 1em;
+  padding: 3px 1em;
   border-left: 1px dotted silver;
   display: inline-block;
-  vertical-align: baseline;
+  vertical-align: middle;
   margin: 0;
 }
-menu > *:first-child {
+menu > p:first-child {
   padding-left: 0;
   border-left: none;
 }
-menu li,
 menu button {
   cursor: pointer;
   display: inline-block;
   margin: 0 0.5em;
-  text-shadow: 1px 1px 1px white;
+  padding: 1px 5px;
+  border-radius: 2px;
   color: #666;
-  min-width: 1.2em;
-  height: 2.5ex;
-  vertical-align: baseline;
+  min-width: 20px;
+  min-height: 20px;
+  vertical-align: middle;
+  border: none;
+  background-color: transparent;
 }
-menu li.logo:hover,
-menu li.logo {
+menu button:hover {
+  -webkit-box-shadow: 0 0 2px #333;
+  -moz-box-shadow: 0 0 2px #333;
+  -o-box-shadow: 0 0 2px #333;
+  box-shadow: 0 0 2px #333;
+}
+menu button.logo:hover,
+menu button.logo {
   color: white;
   text-shadow: 1px 1px 1px #ccc;
   letter-spacing: -0.1em;
   cursor: default;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
 }
-menu button {
-  border: none;
-  background-color: transparent;
-  margin: 0;
-}
-menu li:hover,
 menu button:hover {
   color: #333;
 }
 
+menu .format button {
+  margin: 0 0;
+}
+menu .images button {
+  margin: 0 5px;
+}
 menu button[data-command=formatBlock][data-value=H1] {
   font-weight: bold;
 }
@@ -65,40 +76,45 @@ menu button[data-command=insertImage] {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100%;
-  min-width: 2em;
-  border-radius: 2px;
+  min-width: 42px;
 }
 
 menu fieldset {
-  margin: 1ex 0.5em;
-  padding: 1ex 1em;
-  border-radius: 3px;
-  border: 1px solid white;
+  margin: 0 0 0 1.5em;
+  padding: 1ex 1em 2ex 1em;
+  border-radius: 4px 0 0 0;
+  border: 1px dotted #b8b8b7;
+  border-right: none;
+  border-bottom: none;
 }
-menu form legend {
+menu legend {
   color: #999;
-  text-shadow: 1px 1px 1px white;
   cursor: default;
 }
-menu form label {
+menu label {
   font-weight: normal;
   color: #aaa;
   min-width: 4em;
   display: inline-block;
-  margin: 0 1em 0 0;
-  text-shadow: 1px 1px 1px white;
+  margin: 0 1em 0 0.3em;
 }
-menu form input[type=text] {
+menu input[type=text] {
   margin: 0 1em 0 0;
   max-width: 70%;
   min-width: 4em;
 }
-menu form input[type=submit] {
+menu input[type=submit] {
   margin-top: 1ex;
 }
-menu .info {
+menu fieldset p {
+  margin: 1ex 0 0 0;
+}
+menu fieldset p input + button {
+  margin-left: 0;
+}
+
+menu p.info {
   color: #999;
-  text-shadow: 1px 1px 1px white;
   font-weight: normal;
   cursor: default;
 }

@@ -5,7 +5,7 @@ Lena.helpers.image = (function() {
   function crop(options) {
     // Closure to capture the file information.
     options.reader.onload = function(e) {
-      options.info.innerHTML = Math.round(((options.idx - 0.7) / options.files.length) * 100) +  '% ' + options.file.name;
+      $(options.info).html(Math.round(((options.idx - 0.7) / options.files.length) * 100) +  '% ' + options.file.name);
 
       options.img.onload = function() {
         var width, height;
@@ -24,7 +24,7 @@ Lena.helpers.image = (function() {
         options.ctx.clearRect(0, 0, width, height);
         options.ctx.drawImage(options.img, 0, 0, width, height);
 
-        options.info.innerHTML = Math.round(((options.idx - 0.5) / options.files.length) * 100) +  '% ' + options.file.name;
+        $(options.info).html(Math.round(((options.idx - 0.5) / options.files.length) * 100) +  '% ' + options.file.name);
         
         var attachment = {};
         attachment[options.file.name] = {
@@ -34,7 +34,7 @@ Lena.helpers.image = (function() {
 
         options.save(options.id, attachment, {
           success: function(model) {
-            options.info.innerHTML = Math.round((options.idx / options.files.length) * 100) +  '% ' + options.file.name;
+            $(options.info).html(Math.round((options.idx / options.files.length) * 100) +  '% ' + options.file.name);
 
             model.trigger('upload');
             document.execCommand('insertImage', false, Lena.helpers.url.image(model.toJSON(), options.file.name));

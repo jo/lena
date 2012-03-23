@@ -82,10 +82,10 @@ Lena.views.Drop = Backbone.View.extend({
           canvas = document.createElement('canvas'),
           ctx = canvas.getContext('2d'),
           img = new Image(),
-          info = document.getElementById('info');
+          info = '#info';
 
       $(element).removeClass('dragover');
-      info.innerHTML = '0%';
+      $(info).html('0%');
 
       element.focus();
 

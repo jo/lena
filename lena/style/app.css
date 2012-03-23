@@ -9,7 +9,7 @@ body {
 body {
   overflow-y: scroll;
   font-size: 14px;
-  line-height: 2.9ex;
+  line-height: 3ex;
 }
 .content {
   display: table;
