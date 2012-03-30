@@ -11,14 +11,12 @@ menu {
 }
 menu > p {
   padding: 3px 1em;
-  border-left: 1px dotted silver;
   display: inline-block;
   vertical-align: middle;
   margin: 0;
 }
 menu > p:first-child {
   padding-left: 0;
-  border-left: none;
 }
 menu button {
   cursor: pointer;
