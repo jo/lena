@@ -10,6 +10,11 @@
     "method": "GET"
   },
   {
+    "from": "/theme.css",
+    "to": "_list/theme/theme",
+    "method": "GET"
+  },
+  {
     "from": "/vendor.js",
     "to": "vendor.js",
     "method": "GET"

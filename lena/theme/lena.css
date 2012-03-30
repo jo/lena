@@ -1,0 +1,83 @@
+/* Lena style
+ * (c) 2012 Johannes J. Schmidt, TF Berlin
+ * Design by Moritz Esser <messer@messergrafik.de>
+ * */
+
+@import url(http://fonts.googleapis.com/css?family=Lora|Inconsolata);
+
+body {
+  font-family: 'Inconsolata', lucida console, monaco, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.app {
+  padding: 3%;
+}
+a {
+  color: #999;
+  text-decoration: none;
+}
+a.current {
+  color: black;
+}
+a:hover {
+  color: black;
+  text-decoration: underline;
+}
+h1 a {
+  color: black;
+}
+h1, p {
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+}
+
+header h1.title a {
+  white-space: nowrap;
+  font-family: 'Lora', georgia, times new roman, serif;
+  line-height: 1;
+  font-size: 36px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+#menu li a {
+  font-size: 16px;
+}
+
+.cross {
+  position: absolute;
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+header h1 .cross {
+  bottom: 0;
+  right: 0;
+  border-right: 1px solid #b0b0b0;
+  border-top-left-radius: 20px;
+}
+section aside .cross {
+  top: 0;
+  right: 0;
+  border-top: 1px solid #b0b0b0;
+  border-right: 1px solid #b0b0b0;
+}
+section article .cross {
+  top: 0;
+  left: 0;
+  border-top: 1px solid #b0b0b0;
+}
+section > article ol.list {
+  color: #999;
+}
+section > article ol.list a {
+  color: black;
+}
+section > aside h1 {
+  font-weight: normal;
+}
+section > aside p {
+  color: #999;
+}

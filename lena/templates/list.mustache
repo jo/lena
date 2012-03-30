@@ -1,14 +1,15 @@
 <header>
-  <h1><a href="/">{{title}}</a></h1>
-  <nav id=menu>{{> menu}}</nav>
+  <h1 class=title><a href="/">{{title}}</a><span class=cross></span></h1>
+  <nav id=menu>{{> menu}}<span class=cross></span></nav>
 </header>
 <section>
-  <aside>&nbsp;</aside>
+  <aside>&nbsp;<span class=cross></span></aside>
   <article>
-    <ol class=index>
+    <ol class=list>
       {{#docs}}
         <li><a href="{{url}}">{{title}}</a> {{subtitle}}</li>
       {{/docs}}
     </ol>
+    <span class=cross></span>
   </article>
 </section>

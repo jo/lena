@@ -43,6 +43,7 @@ menu button.logo:hover,
 menu button.logo {
   color: white;
   text-shadow: 1px 1px 1px #ccc;
+  margin-bottom: 2px;
   letter-spacing: -0.1em;
   cursor: default;
   -webkit-box-shadow: none;

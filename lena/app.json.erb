@@ -1,7 +1,12 @@
 {
   "_id": "_design/lena",
+  "type": "app",
 
-  "title": "Lena Boehm",
+  "options": {
+    "include_design": true
+  },
+
+  "title": "Lena B&ouml;hm",
   "description": "Lena is a slick minimalistic Content Management System for artists and others.",
   "author": "Johannes J. Schmidt, TF, Berlin",
   "menu": [
@@ -18,7 +23,9 @@
   "shows": <%= map 'shows' %>,
   "rewrites": <%= read 'rewrites.json' %>,
   "validate_doc_update": <%=h read 'validate_doc_update.js' %>,
+
   "lib": <%= map 'lib' %>,
+  "style": <%=h read 'theme/*.css' %>,
 
   "_attachments": {
     "favicon.ico": {

@@ -21,12 +21,13 @@ section {
   display: table-row;
 }
 header > h1,
-section > aside,
 header > nav,
+section > aside,
 section > article {
+  position: relative;
   display: table-cell;
   font-size: 1em;
-  padding: 1ex 1em;
+  padding: 1.1ex 1.1em;
   margin: 0;
 }
 header > h1,
@@ -37,6 +38,7 @@ header > nav {
 section > aside,
 section > article {
   vertical-align: top;
+  padding-top: 2ex;
 }
 header > h1,
 section > aside {
@@ -59,6 +61,10 @@ header > nav li {
 }
 header > nav li a {
   text-decoration: none;
+  padding: 0.5ex 0.5em;
+}
+header > nav li:first-child a {
+  padding-left: 0;
 }
 header > nav li.current a {
   color: black;
@@ -72,6 +78,10 @@ section > article img {
   max-width: 100%;
   display: table;
 }
+section > aside img:first-child,
+section > article img:first-child {
+  margin-top: 0.7ex;
+}
 section > aside img {
   float: right;
 }
@@ -81,7 +91,7 @@ section > article img {
 section > article p {
   max-width: 55em;
 }
-section > article ol.index {
+section > article ol.list {
   padding: 0;
   -moz-column-width: 16em;
   -webkit-column-width: 16em;
@@ -96,7 +106,7 @@ section > article > *:first-child {
   margin-top: 0;
 }
 
-/* responsiveness */
+/* responsivity */
 @media all and (max-width: 800px) {
   .content,
   section,
