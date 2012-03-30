@@ -1,16 +1,16 @@
 <header>
-  <h1 class=title><a href="/">{{title}}</a><span class=cross></span></h1>
-  <nav id=menu>{{> menu}}<span class=cross></span></nav>
+  <h1 class=title><a href="/">{{title}}</a></h1>
+  <nav id=menu>{{> menu}}</nav>
 </header>
 {{#docs}}
   <section>
     {{#editable}}
-      <aside contenteditable data-attr=aside data-id="{{_id}}">{{{aside}}}<span class=cross></span></aside>
-      <article contenteditable data-attr=article data-id="{{_id}}">{{{article}}}<span class=cross></span></article>
+      <aside contenteditable data-attr=aside data-id="{{_id}}">{{{aside}}}</aside>
+      <article contenteditable data-attr=article data-id="{{_id}}">{{{article}}}</article>
     {{/editable}}
     {{^editable}}
-      <aside>{{{aside}}}<span class=cross></span></aside>
-      <article>{{{article}}}<span class=cross></span></article>
+      <aside>{{{aside}}}</aside>
+      <article>{{{article}}}</article>
     {{/editable}}
   </section>
 {{/docs}}

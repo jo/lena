@@ -82,21 +82,22 @@ Lena.views.Drop = Backbone.View.extend({
           canvas = document.createElement('canvas'),
           ctx = canvas.getContext('2d'),
           img = new Image(),
-          info = '#info';
+          id = $(element).data('id');
 
       $(element).removeClass('dragover');
-      $(info).html('0%');
 
       element.focus();
 
       // crop and save image after image
       Lena.helpers.image.process({
-        id: $(element).data('id'),
+        id: id,
+        folder: this.pages.get(id).get('folder'),
         reader: reader,
         canvas: canvas,
         ctx: ctx,
         img: img,
-        info: info,
+        info: '#info',
+        indicator: '#indicator',
         files: files,
         idx: 0,
         save: _.bind(this.saveImage, this)

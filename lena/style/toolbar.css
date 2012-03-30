@@ -1,7 +1,7 @@
 menu {
   display: block;
   margin: 0;
-  padding: 0.5ex 0;
+  padding: 0;
   border-bottom: 1px solid #b8b8b7;
   background-color: white;
   font-weight: bold;
@@ -57,7 +57,7 @@ menu .format button {
   margin: 0 0;
 }
 menu .images button {
-  margin: 0 5px;
+  margin: 0 5px 5px 0;
 }
 menu button[data-command=formatBlock][data-value=H1] {
   font-weight: bold;
@@ -82,7 +82,7 @@ menu fieldset {
   margin: 0 0 0 1.5em;
   padding: 1ex 1em 2ex 1em;
   border-radius: 4px 0 0 0;
-  border: 1px dotted #b8b8b7;
+  border: 1px solid #b8b8b7;
   border-right: none;
   border-bottom: none;
 }
@@ -110,12 +110,6 @@ menu fieldset p {
 }
 menu fieldset p input + button {
   margin-left: 0;
-}
-
-menu p.info {
-  color: #999;
-  font-weight: normal;
-  cursor: default;
 }
 
 .dragover {

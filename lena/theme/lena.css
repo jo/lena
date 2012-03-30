@@ -13,6 +13,8 @@ body {
 .app {
   padding: 3%;
 }
+
+/* basic style */
 a {
   color: #999;
   text-decoration: none;
@@ -33,48 +35,45 @@ h1, p {
   font-size: 1em;
 }
 
+/* logo/title */
 header h1.title a {
   white-space: nowrap;
   font-family: 'Lora', georgia, times new roman, serif;
   line-height: 1;
-  font-size: 36px;
+  font-size: 32px;
   font-weight: normal;
   margin: 0;
   padding: 0;
 }
+
+/* menu */
 #menu li a {
   font-size: 16px;
 }
 
-.cross {
+/* cross */
+section > article:before {
   position: absolute;
-  display: block;
-  width: 28px;
-  height: 28px;
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4AQMAAACSSKldAAAAAXNSR0IArs4c6QAAAAZQTFRFtpB9sLCwy1310gAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfcAx4NCgpMrL5PAAAAF0lEQVQY02NgYGAQYICAYUn/h4Dh6j8AAoMKap2VvawAAAAASUVORK5CYII=);
+  top: -28px;
+  left: -28px;
 }
-header h1 .cross {
-  bottom: 0;
-  right: 0;
-  border-right: 1px solid #b0b0b0;
-  border-top-left-radius: 20px;
+/* responsivity */
+@media all and (max-width: 800px) {
+  section > article:before {
+    content: '';
+  }
 }
-section aside .cross {
-  top: 0;
-  right: 0;
-  border-top: 1px solid #b0b0b0;
-  border-right: 1px solid #b0b0b0;
-}
-section article .cross {
-  top: 0;
-  left: 0;
-  border-top: 1px solid #b0b0b0;
-}
+
+/* page list */
 section > article ol.list {
   color: #999;
 }
 section > article ol.list a {
   color: black;
 }
+
+/* aside text */
 section > aside h1 {
   font-weight: normal;
 }

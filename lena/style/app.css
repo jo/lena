@@ -38,7 +38,6 @@ header > nav {
 section > aside,
 section > article {
   vertical-align: top;
-  padding-top: 2ex;
 }
 header > h1,
 section > aside {
@@ -80,7 +79,7 @@ section > article img {
 }
 section > aside img:first-child,
 section > article img:first-child {
-  margin-top: 0.7ex;
+  margin-top: 1ex;
 }
 section > aside img {
   float: right;
