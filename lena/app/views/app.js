@@ -15,6 +15,7 @@ Lena.views.App = Backbone.View.extend({
     
     this.session.on('change:userCtx', this.render, this);
     this.pages.on('reset', this.render, this);
+    this.pages.on('change:title change:subtitle change:folder', this.render, this);
   },
 
   setAppView: function(name) {

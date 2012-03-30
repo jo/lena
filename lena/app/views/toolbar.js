@@ -2,9 +2,11 @@ Lena.views.Toolbar = Backbone.View.extend({
   template: 'toolbar',
 
   events: {
-    'click [data-action=create]': 'create',
-    'submit [data-dialog=create]': 'createPage',
+    'click [data-action=new]': 'newPage',
     'click [data-folder]': 'setFolder',
+    'submit [data-dialog=create]': 'createPage',
+    'click [data-action=edit]': 'editPage',
+    'submit [data-dialog=edit]': 'updatePage',
     'click [data-action=destroy]': 'destroy',
     'click [data-action=logout]': 'logout',
     'click [data-command]': 'format'
@@ -23,7 +25,8 @@ Lena.views.Toolbar = Backbone.View.extend({
       username: this.session.username(),
       editing: this.pages.single(),
       folders: _.uniq(this.pages.pluck('folder')),
-      images: this.pages.images()
+      images: this.pages.images(),
+      pages: this.pages.toJSON()
     };
   },
   
@@ -35,16 +38,11 @@ Lena.views.Toolbar = Backbone.View.extend({
     return false;
   }, 100),
   
-  create: _.debounce(function() {
-    this.$('[data-dialog=create]').toggle().find('input[name=folder]').focus();
+  // new page
+  newPage: _.debounce(function() {
+    this.$('[data-dialog=edit]').hide();
+    this.$('[data-dialog=new]').toggle().find('input[name=folder]').focus();
   }, 100),
-  
-  setFolder: function(e) {
-    this.$('input[name=folder]').val($(e.target).data('folder'));
-    this.$('input[name=title]').focus();
-
-    return false;
-  },
   
   createPage: function(e) {
     this.pages.create({
@@ -54,6 +52,32 @@ Lena.views.Toolbar = Backbone.View.extend({
       success: _.bind(function(model) {
         this.router.navigate(Lena.helpers.url.page(model.toJSON()), { trigger: true });
       }, this)
+    });
+
+    return false;
+  },
+
+  // edit page
+  editPage: _.debounce(function() {
+    this.$('[data-dialog=new]').hide();
+    this.$('[data-dialog=edit]').toggle().find('input[name=subtitle]').focus();
+  }, 100),
+  
+  setFolder: function(e) {
+    this.$('input[name=folder]').val($(e.target).data('folder'));
+    this.$('input[name=title]').focus();
+
+    return false;
+  },
+  
+  updatePage: function(e) {
+    var form = $(e.target),
+        page = _.first(this.pages.docs());
+
+    page.save({
+      folder: form.find('input[name=folder]').val(),
+      title: form.find('input[name=title]').val(),
+      subtitle: form.find('input[name=subtitle]').val()
     });
 
     return false;

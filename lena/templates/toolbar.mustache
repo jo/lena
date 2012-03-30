@@ -2,8 +2,9 @@
   <menu type=toolbar>
     <p>
       <button class=logo>TF</button>
-      <button data-action=create>New</button>
+      <button data-action=new>New</button>
       {{#editing}}
+        <button data-action=edit>Meta</button>
         <button data-action=destroy>Delete</button>
       {{/editing}}
       <button data-action=logout>Logout</button>
@@ -24,7 +25,7 @@
       </p>
     {{/editing}}
     <p id=info class=info></p>
-    <form data-dialog=create style="display:none">
+    <form data-dialog=new style="display:none">
       <fieldset>
         <legend>New Page</legend>
         <p>
@@ -40,6 +41,29 @@
           <input type=submit value="Create Page">
         </p>
       </fieldset>
+    </form>
+    <form data-dialog=edit style="display:none">
+      {{#pages}}
+        <fieldset>
+          <legend>Page Meta Information</legend>
+          <p>
+            <label>Folder</label>
+            <input type=text name=folder value="{{folder}}" required pattern="[^\/]+">
+            {{#folders}}
+              <button data-folder="{{.}}">{{.}}</button>
+            {{/folders}}
+          </p>
+          <p>
+            <label>Title</label>
+            <input type=text name=title value="{{title}}" required>
+          </p>
+          <p>
+            <label>Subtitle</label>
+            <input type=text name=subtitle value="{{subtitle}}" required>
+            <input type=submit value="Update Information">
+          </p>
+        </fieldset>
+      {{/pages}}
     </form>
   </menu>
 {{/username}}
