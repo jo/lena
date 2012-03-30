@@ -1,7 +1,7 @@
 menu {
   display: block;
   margin: 0;
-  padding: 0;
+  padding: 0.5ex 0;
   border-bottom: 1px solid #b8b8b7;
   background-color: white;
   font-weight: bold;
