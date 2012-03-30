@@ -27,9 +27,10 @@ Lena.helpers.image = (function() {
         $(options.info).html(Math.round(((options.idx - 0.5) / options.files.length) * 100) +  '% ' + options.file.name);
         
         var attachment = {};
-        attachment[options.file.name] = {
+        options.data = options.canvas.toDataURL().slice(22);
+        attachment[options.file.name.replace(/\.(png|jpg|jpeg)$/i, '.png')] = {
           content_type: 'image/png',
-          data: options.canvas.toDataURL().slice(22)
+          data: options.data
         };
 
         options.save(options.id, attachment, {
