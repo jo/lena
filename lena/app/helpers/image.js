@@ -2,7 +2,7 @@ Lena.helpers.image = (function() {
   var maxWidth = 600;
 
   function info(options, step) {
-    $(options.info).html('Upload ' + Math.round(((options.idx - step) / options.files.length) * 100) +  '% complete. Processing image ' + options.idx + ' of ' + options.files.length + ': ' + options.file.name);
+    $(options.info).html('Upload ' + Math.round(((options.idx - step) / options.files.length) * 100) +  '% complete<br>Processing image ' + options.idx + ' of ' + options.files.length + ': ' + options.file.name);
   }
 
   // crop via canvas

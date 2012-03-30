@@ -87,12 +87,10 @@ Lena.views.Toolbar = Backbone.View.extend({
     var button = this.$('button[data-value="' + image.url + '"]');
 
     if (button.length === 0) {
-      console.log('insert button ' + image.url);
       button = $("<button>").attr('style','background-image: url(' + image.url + ')').attr('data-command', 'insertImage').attr('data-value', image.url);
       this.$('.images').append(button);
     } else {
-      console.log('reload button ' + image.url);
-      // reload background image
+      // reload image
       button.attr('style', 'background-image: url(' + image.url + '?' + Math.random() + ')');
     }
   },

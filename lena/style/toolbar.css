@@ -21,7 +21,7 @@ menu > p:first-child {
 menu button {
   cursor: pointer;
   display: inline-block;
-  margin: 0 0.5em;
+  margin: 5px 0.5em;
   padding: 1px 5px;
   border-radius: 2px;
   color: #666;
@@ -41,7 +41,6 @@ menu button.logo:hover,
 menu button.logo {
   color: white;
   text-shadow: 1px 1px 1px #ccc;
-  margin-bottom: 2px;
   letter-spacing: -0.1em;
   cursor: default;
   -webkit-box-shadow: none;
@@ -57,7 +56,7 @@ menu .format button {
   margin: 0 0;
 }
 menu .images button {
-  margin: 0 5px 5px 0;
+  margin: 5px;
 }
 menu button[data-command=formatBlock][data-value=H1] {
   font-weight: bold;
