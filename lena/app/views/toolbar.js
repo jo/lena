@@ -13,6 +13,7 @@ Lena.views.Toolbar = Backbone.View.extend({
   },
   
   initialize: function(options) {
+    this.ddoc = options.ddoc;
     this.router = options.router;
     this.session = options.session;
     this.pages = options.pages;
@@ -24,7 +25,7 @@ Lena.views.Toolbar = Backbone.View.extend({
     return {
       username: this.session.username(),
       editing: this.pages.single(),
-      folders: _.uniq(this.pages.pluck('folder')),
+      folders: _.uniq(this.pages.pluck('folder').concat(this.ddoc.get('menu'))).sort(),
       images: this.pages.images(),
       pages: this.pages.toJSON()
     };
