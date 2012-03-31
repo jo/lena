@@ -39,7 +39,7 @@ Lena.models.Session = Backbone.Model.extend({
     }
   },
 
-  logout: function() {
+  logout: function(options) {
     var that = this;
 
     $.ajax({
@@ -48,6 +48,9 @@ Lena.models.Session = Backbone.Model.extend({
       success: function() {
         // clear userCtx
         that.unset('userCtx');
+        if (typeof options.success === 'function') {
+          options.success();
+        }
       }
     });
   }

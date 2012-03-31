@@ -114,7 +114,10 @@ Lena.views.Toolbar = Backbone.View.extend({
   }, 100),
 
   logout: function() {
-    this.session.logout();
-    window.location.reload();
+    this.session.logout({
+      success: function() {
+        window.location.reload();
+      }
+    });
   }
 });
