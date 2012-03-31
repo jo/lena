@@ -4,7 +4,7 @@ Lena.views.Toolbar = Backbone.View.extend({
   events: {
     'click [data-action=new]': 'newPage',
     'click [data-folder]': 'setFolder',
-    'submit [data-dialog=create]': 'createPage',
+    'submit [data-dialog=new]': 'createPage',
     'click [data-action=edit]': 'editPage',
     'submit [data-dialog=edit]': 'updatePage',
     'click [data-action=destroy]': 'destroy',
@@ -46,9 +46,11 @@ Lena.views.Toolbar = Backbone.View.extend({
   }, 100),
   
   createPage: function(e) {
+    var form = $(e.target);
+
     this.pages.create({
-      folder: this.$('input[name=folder]').val(),
-      title: this.$('input[name=title]').val()
+      folder: form.find('input[name=folder]').val(),
+      title: form.find('input[name=title]').val()
     }, {
       success: _.bind(function(model) {
         this.router.navigate(Lena.helpers.url.page(model.toJSON()), { trigger: true });
