@@ -85,8 +85,7 @@ Lena.views.Drop = Backbone.View.extend({
           id = $(element).data('id');
 
       $(element).removeClass('dragover');
-
-      element.focus();
+      $(element).focus();
 
       // crop and save image after image
       Lena.helpers.image.process({
