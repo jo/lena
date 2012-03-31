@@ -2,15 +2,20 @@ Lena.helpers.image = (function() {
   var maxWidth = 600;
 
   function info(options, step) {
-    $(options.info).html('Upload ' + Math.round(((options.idx - step) / options.files.length) * 100) +  '% complete<br>Processing image ' + options.idx + ' of ' + options.files.length + ': ' + options.file.name);
+    var progress = (options.idx - step) / options.files.length,
+        now = new Date(),
+        est = new Date(options.startedAt.getTime() + (now.getTime() - options.startedAt.getTime()) / progress);
+
+    $(options.info).html('Upload ' + Math.round(progress * 100) +  '% complete<br>Processing image ' + options.idx + ' of ' + options.files.length + ': ' + options.file.name + '<br>Ready in ' + est.toRelativeTime());
   }
 
   // crop via canvas
   function crop(options) {
+    options.startedAt || (options.startedAt = new Date());
+    options.fileName = options.file.name.replace(/\.(png|jpg|jpeg)$/i, '.png');
+
     $(options.indicator).show();
     info(options, 0.9);
-
-    options.fileName = options.file.name.replace(/\.(png|jpg|jpeg)$/i, '.png');
 
     // Closure to capture the file information.
     options.reader.onload = function(e) {
