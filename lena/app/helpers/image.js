@@ -1,5 +1,5 @@
 Lena.helpers.image = (function() {
-  var maxWidth = 600;
+  var maxWidth = 800;
 
   function info(options, step) {
     var progress = (options.idx - step) / options.files.length,
