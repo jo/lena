@@ -107,6 +107,10 @@ section > article > *:first-child {
   margin-top: 0;
 }
 
+article .list li.double {
+  display: none;
+}
+
 /* responsivity */
 @media all and (max-width: 800px) {
   .content,

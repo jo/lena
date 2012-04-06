@@ -118,6 +118,9 @@ menu fieldset p input + button {
 .ui-sortable li {
   cursor: move;
 }
+.ui-sortable li.double {
+  display: block!important;
+}
 .ui-sortable li.ui-sortable-helper {
   border: 1px solid #999;
   border-radius: 3px;

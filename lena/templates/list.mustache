@@ -7,7 +7,12 @@
   <article>
     <ol class=list>
       {{#docs}}
-        <li data-id="{{_id}}"><a href="{{url}}">{{title}}</a> {{subtitle}}</li>
+        {{#doc}}
+          <li data-id="{{_id}}"><a href="{{url}}">{{title}}</a> {{subtitle}}</li>
+        {{/doc}}
+        {{#docs}}
+          <li class=double data-id="{{_id}}"><a href="{{url}}">{{title}}</a> {{subtitle}}</li>
+        {{/docs}}
       {{/docs}}
     </ol>
   </article>
