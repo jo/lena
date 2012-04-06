@@ -3,13 +3,16 @@
     <p>
       <button class=logo>TF</button>
       <button data-action=new>New</button>
-      {{#editing}}
+      {{#list}}
+        <button data-action=sort>Sort</button>
+      {{/list}}
+      {{#show}}
         <button data-action=edit>Meta</button>
         <button data-action=destroy>Delete</button>
-      {{/editing}}
+      {{/show}}
       <button data-action=logout>Logout</button>
     </p>
-    {{#editing}}
+    {{#show}}
       <p class=format>
         <button data-command=formatBlock data-value=H1>H</button>
         <button data-command=formatBlock data-value=P>P</button>
@@ -23,21 +26,25 @@
           <button data-command=insertImage data-value="{{url}}" style="background-image: url({{url}})"></button>
         {{/images}}
       </p>
-    {{/editing}}
+    {{/show}}
     <form data-dialog=new style="display:none">
       <fieldset>
         <legend>New Page</legend>
         <p>
           <label>Folder</label>
-          <input type=text name=folder required pattern="[^\/]+">
+          <input tabindex=1 type=text name=folder required pattern="[^\/]+" value="{{currentFolder}}">
           {{#folders}}
             <button data-folder="{{.}}">{{.}}</button>
           {{/folders}}
         </p>
         <p>
           <label>Title</label>
-          <input type=text name=title required>
-          <input type=submit value="Create Page">
+          <input tabindex=2 type=text name=title required>
+        </p>
+        <p>
+          <label>Subtitle</label>
+          <input tabindex=3 type=text name=subtitle value="{{subtitle}}">
+          <input tabindex=4 type=submit value="Create New Page">
         </p>
       </fieldset>
     </form>
@@ -58,11 +65,20 @@
           </p>
           <p>
             <label>Subtitle</label>
-            <input type=text name=subtitle value="{{subtitle}}" required>
-            <input type=submit value="Update Information">
+            <input type=text name=subtitle value="{{subtitle}}">
+            <input type=submit value="Update Meta Information">
           </p>
         </fieldset>
       {{/pages}}
+    </form>
+    <form data-dialog=sort style="display:none">
+      <fieldset>
+        <legend>Order Pages</legend>
+        <p>
+          Drag Pages into their desired order.
+          Press <input type=submit value="Finish"> when done.
+        </p>
+      </fieldset>
     </form>
   </menu>
 {{/username}}

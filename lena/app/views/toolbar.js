@@ -8,6 +8,8 @@ Lena.views.Toolbar = Backbone.View.extend({
     'click [data-action=edit]': 'editPage',
     'submit [data-dialog=edit]': 'updatePage',
     'click [data-action=destroy]': 'destroy',
+    'click [data-action=sort]': 'sortPages',
+    'submit [data-dialog=sort]': 'sortPagesDone',
     'click [data-action=logout]': 'logout',
     'click [data-command]': 'format'
   },
@@ -24,11 +26,25 @@ Lena.views.Toolbar = Backbone.View.extend({
   view: function() {
     return {
       username: this.session.username(),
-      editing: this.pages.single(),
+      show: this.pages.single(),
+      list: this.pages.multiple(),
       folders: _.uniq(this.pages.pluck('folder').concat(this.ddoc.get('menu'))).sort(),
+      currentFolder: this.pages.folder,
       images: this.pages.images(),
       pages: this.pages.toJSON()
     };
+  },
+
+  toggleDialog: function(name) {
+    this.$('[data-dialog]').each(function() {
+      var el = $(this);
+
+      if (el.data('dialog') === name) {
+        el.toggle();
+      } else {
+        el.hide();
+      }
+    });
   },
   
   format: _.debounce(function(e) {
@@ -41,8 +57,8 @@ Lena.views.Toolbar = Backbone.View.extend({
   
   // new page
   newPage: _.debounce(function() {
-    this.$('[data-dialog=edit]').hide();
-    this.$('[data-dialog=new]').toggle().find('input[name=folder]').focus();
+    this.toggleDialog('new');
+    this.$('[data-dialog=new] input[name=folder]').focus();
   }, 100),
   
   createPage: function(e) {
@@ -50,7 +66,9 @@ Lena.views.Toolbar = Backbone.View.extend({
 
     this.pages.create({
       folder: form.find('input[name=folder]').val(),
-      title: form.find('input[name=title]').val()
+      title: form.find('input[name=title]').val(),
+      subtitle: form.find('input[name=subtitle]').val(),
+      position: (new Date).getTime()
     }, {
       success: _.bind(function(model) {
         this.router.navigate(Lena.helpers.url.page(model.toJSON()), { trigger: true });
@@ -62,8 +80,8 @@ Lena.views.Toolbar = Backbone.View.extend({
 
   // edit page
   editPage: _.debounce(function() {
-    this.$('[data-dialog=new]').hide();
-    this.$('[data-dialog=edit]').toggle().find('input[name=subtitle]').focus();
+    this.toggleDialog('edit');
+    this.$('[data-dialog=edit] input[name=subtitle]').focus();
   }, 100),
   
   setFolder: function(e) {
@@ -98,7 +116,7 @@ Lena.views.Toolbar = Backbone.View.extend({
     }
   },
   
-  destroy: _.debounce(function() {
+  destroy: function() {
     var folders = this.pages.folders(),
         url = folders.length > 0 ? Lena.helpers.url.folder(_.first(folders)) : '/';
 
@@ -111,7 +129,48 @@ Lena.views.Toolbar = Backbone.View.extend({
     }
 
     return false;
+  },
+  
+  sortPages: _.debounce(function() {
+    var collection = this.pages;
+
+    this.toggleDialog('sort');
+    $("article ol.list").sortable({
+      stop: function(e, ui) {
+        var currElement = $(ui.item[0]),
+            curr = collection.get(currElement.data('id')),
+            nextElement = currElement.next('li'),
+            next = nextElement && collection.get(nextElement.data('id')),
+            n = next && next.get('position'),
+            prevElement = currElement.prev('li'),
+            prev = prevElement && collection.get(prevElement.data('id')),
+            p = prev && prev.get('position');
+
+        p || (p = 0);
+        n || (n = p + 100);
+
+        if (next && prev) {
+          curr.save({ position: p + (n - p) / 2 });
+        } else {
+          if (next) {
+            curr.save({ position: n - 0.5 });
+          } else {
+            if (prev) {
+              curr.save({ position: p + 0.5 });
+            }
+          }
+        }
+      }
+    });
   }, 100),
+
+  sortPagesDone: function() {
+    this.$('[data-dialog=sort]').hide();
+    $("article ol.list").sortable('destroy');
+    this.pages.trigger('reset');
+
+    return false;
+  },
 
   logout: function() {
     this.session.logout({

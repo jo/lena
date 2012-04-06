@@ -106,6 +106,7 @@ menu input[type=submit] {
 }
 menu fieldset p {
   margin: 1ex 0 0 0;
+  font-weight: normal;
 }
 menu fieldset p input + button {
   margin-left: 0;
@@ -113,4 +114,11 @@ menu fieldset p input + button {
 
 .dragover {
   outline: 1px dashed black;
+}
+.ui-sortable li {
+  cursor: move;
+}
+.ui-sortable li.ui-sortable-helper {
+  border: 1px solid #999;
+  border-radius: 3px;
 }

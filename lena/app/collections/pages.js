@@ -9,6 +9,10 @@ Lena.collections.Pages = Backbone.Collection.extend({
     }, this);
   },
 
+  comparator: function(page) {
+    return [page.get('folder'), page.get('position')];
+  },
+
   setScope: function(folder, page) {
     this.folder = folder;
     this.page = page;
@@ -35,9 +39,9 @@ Lena.collections.Pages = Backbone.Collection.extend({
       return this.random();
     }
 
-    return this.filter(function(model) {
+    return _.sortBy(this.filter(function(model) {
       return model.match(this.folder, this.page);
-    }, this);
+    }, this), function(page) { return this.comparator(page); }, this);
   },
 
   docs: function() {
@@ -58,6 +62,10 @@ Lena.collections.Pages = Backbone.Collection.extend({
 
   single: function() {
     return this.docs().length === 1;
+  },
+
+  multiple: function() {
+    return this.docs().length > 1;
   },
 
   toJSON: function() {
