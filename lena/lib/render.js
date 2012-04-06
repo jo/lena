@@ -16,6 +16,12 @@ exports.render = function(ddoc, userCtx, view, partial) {
       view.folders.push(doc.folder);
     }
   });
+  if (view.docs.length > 0) {
+    view.title += ' - ' + view.docs[0].folder;
+    if (view.docs.length === 1) {
+      view.title += ' - ' + view.docs[0].title;
+    }
+  }
   view.menu = [];
   ddoc.menu.forEach(function(entry) {
     view.menu.push({
