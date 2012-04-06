@@ -25,10 +25,12 @@ Lena.views.App = Backbone.View.extend({
 
   // set document title
   setTitle: function() {
+    var doc = _.first(this.pages.docs());
+
     document.title = _.compact([
       this.ddoc.get('title'),
-      this.pages.folder,
-      this.pages.single() && _.first(this.pages.docs()).get('title')
+      doc && doc.get('folder'),
+      this.pages.single() && doc && doc.get('title')
     ]).join(' - ');
   },
   

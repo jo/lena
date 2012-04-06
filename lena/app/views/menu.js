@@ -35,7 +35,7 @@ Lena.views.Menu = Backbone.View.extend({
 
     this.router.navigate(Lena.helpers.url.page(next.toJSON()), { trigger: true });
 
-    _.delay(_.bind(this.play, this), 1000);
+    _.delay(_.bind(this.play, this), this.ddoc.get('framerate'));
   },
   
   start: function() {
