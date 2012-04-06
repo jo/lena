@@ -14,14 +14,13 @@ Lena.views.Menu = Backbone.View.extend({
   },
   
   view: function() {
-    var single = this.pages.single(),
-        next = this.pages.next(),
+    var next = this.pages.next(),
         previous = this.pages.previous();
 
     return {
       menu: this.ddoc.menu(this.pages.folders()),
       playing: this.playing,
-      show: this.pages.single(),
+      showPlayer: this.pages.single() && !!(next || previous),
       next: next && next.toJSON(),
       previous: previous && previous.toJSON()
     };

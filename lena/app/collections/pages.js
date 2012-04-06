@@ -75,7 +75,7 @@ Lena.collections.Pages = Backbone.Collection.extend({
           return page.match(this.folder) && this.indexOf(page) < idx;
         }, this));
 
-    previous || (previous = _.last(this.filter(function(page) { return page.match(this.folder); }, this)));
+    previous || (previous = _.last(this.filter(function(page) { return page.match(this.folder) && page != current; }, this)));
 
     return previous;
   },
@@ -87,7 +87,7 @@ Lena.collections.Pages = Backbone.Collection.extend({
           return page.match(this.folder) && this.indexOf(page) > idx;
         }, this);
 
-    next || (next = this.find(function(page) { return page.match(this.folder) }, this));
+    next || (next = this.find(function(page) { return page.match(this.folder) && page != current; }, this));
 
     return next;
   },
