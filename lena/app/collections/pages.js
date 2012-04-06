@@ -68,6 +68,30 @@ Lena.collections.Pages = Backbone.Collection.extend({
     return this.docs().length > 1;
   },
 
+  previous: function() {
+    var current = this.single() && _.first(this.docs()),
+        idx = current && this.indexOf(current),
+        previous = idx && idx > 0 && _.last(this.filter(function(page) {
+          return page.match(this.folder) && this.indexOf(page) < idx;
+        }, this));
+
+    previous || (previous = _.last(this.filter(function(page) { return page.match(this.folder); }, this)));
+
+    return previous;
+  },
+
+  next: function() {
+    var current = this.single() && _.first(this.docs()),
+        idx = current && this.indexOf(current),
+        next = idx && this.find(function(page) {
+          return page.match(this.folder) && this.indexOf(page) > idx;
+        }, this);
+
+    next || (next = this.find(function(page) { return page.match(this.folder) }, this));
+
+    return next;
+  },
+
   toJSON: function() {
     return this.docs().map(function(model) {
       var doc = model.toJSON();

@@ -1,0 +1,41 @@
+nav .menu,
+nav .player {
+  display: inline;
+}
+.player {
+  margin-left: 2em;
+  text-align: right;
+}
+.player .play {
+  display: inline-block;
+  width: 9px;
+  height: 8px;
+  color: transparent;
+  padding: 0;
+  vertical-align: baseline;
+  overflow: hidden;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0.3;
+}
+.player .play.pause,
+.player.playing .play.start,
+.player .play:hover {
+  opacity: 1;
+}
+.player.playing .play.pause {
+  opacity: 0.3;
+}
+.player .reverse {
+  background-image: url('data:image/gif;base64,<%= base64 read 'images/play-reverse.png' %>');
+}
+.player .forward {
+  background-image: url('data:image/gif;base64,<%= base64 read 'images/play-forward.png' %>');
+}
+.player .start {
+  background-image: url('data:image/gif;base64,<%= base64 read 'images/play-start.png' %>');
+}
+.player .pause {
+  background-image: url('data:image/gif;base64,<%= base64 read 'images/play-pause.png' %>');
+}

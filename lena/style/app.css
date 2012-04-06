@@ -24,7 +24,6 @@ header > h1,
 header > nav,
 section > aside,
 section > article {
-  position: relative;
   display: table-cell;
   font-size: 1em;
   padding: 1.1ex 1.1em;

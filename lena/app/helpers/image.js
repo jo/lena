@@ -1,5 +1,6 @@
 Lena.helpers.image = (function() {
-  var maxWidth = 800;
+  var maxWidth = 800,
+      maxHeight = 600;
 
   function info(options, step) {
     var progress = (options.idx - step) / options.files.length,
@@ -25,11 +26,16 @@ Lena.helpers.image = (function() {
         var width, height;
 
         if (options.img.width > maxWidth) {
-          width = maxWidth
+          width = maxWidth;
           height = options.img.height * width / options.img.width;
         } else {
           width = options.img.width;
           height = options.img.height;
+        }
+
+        if (options.img.height > maxHeight) {
+          height = maxHeight;
+          width = options.img.width * height / options.img.height;
         }
 
         options.canvas.setAttribute('width', width + 'px');

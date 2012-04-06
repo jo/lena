@@ -9,6 +9,10 @@ Lena.views.Editor = Backbone.View.extend({
   initialize: function(options) {
     this.session = options.session;
     this.pages = options.pages;
+
+    // hmmm - this seems not to work
+    document.execCommand('enableObjectResizing', false, false);
+    document.execCommand('insertBrOnReturn', false, false);
   },
 
   save: _.throttle(function(e) {

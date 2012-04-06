@@ -17,3 +17,6 @@ input[type=file],
 select {
   width: 100%;
 }
+[contenteditable] {
+  padding-bottom: 3ex;
+}

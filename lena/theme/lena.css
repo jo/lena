@@ -52,23 +52,22 @@ header h1.title a {
 }
 
 /* cross */
-section > article:before {
+header > h1 {
+  position: relative;
+}
+header > h1:after {
   position: absolute;
   content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4AQMAAACSSKldAAAAAXNSR0IArs4c6QAAAAZQTFRFtpB9sLCwy1310gAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfcAx4NCgpMrL5PAAAAF0lEQVQY02NgYGAQYICAYUn/h4Dh6j8AAoMKap2VvawAAAAASUVORK5CYII=);
-  z-index: -99;
-  top: -29px;
-  left: -28px;
+  z-index: -999;
+  bottom: -35px;
+  right: -28px;
 }
 @media all and (max-width: 800px) {
-  section > article:before {
+  header > h1:after {
     content: '';
   }
 }
 
-/* edit */
-[contenteditable]:focus {
-  outline: 1px solid #999;
-}
 
 /* page list */
 section > article ol.list {

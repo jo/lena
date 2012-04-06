@@ -2,7 +2,9 @@ Lena.views.Menu = Backbone.View.extend({
   template: 'menu',
 
   events: {
-    'click a': 'go'
+    'click [data-player=start]': 'start',
+    'click [data-player=stop]': 'stop',
+    'click a[href=~/]': 'go'
   },
   
   initialize: function(options) {
@@ -12,9 +14,43 @@ Lena.views.Menu = Backbone.View.extend({
   },
   
   view: function() {
+    var single = this.pages.single(),
+        next = this.pages.next(),
+        previous = this.pages.previous();
+
     return {
-      menu: this.ddoc.menu(this.pages.folders())
+      menu: this.ddoc.menu(this.pages.folders()),
+      playing: this.playing,
+      show: this.pages.single(),
+      next: next && next.toJSON(),
+      previous: previous && previous.toJSON()
     };
+  },
+
+  play: function() {
+    var next = this.pages.next();
+
+    if (!this.playing) {
+      return;
+    }
+
+    this.router.navigate(Lena.helpers.url.page(next.toJSON()), { trigger: true });
+
+    _.delay(_.bind(this.play, this), 1000);
+  },
+  
+  start: function() {
+    this.playing = true;
+    this.play();
+
+    return false;
+  },
+  
+  stop: function() {
+    this.$('.player').removeClass('playing');
+    this.playing = false;
+
+    return false;
   },
   
   go: function(e) {
