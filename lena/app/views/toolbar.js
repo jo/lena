@@ -60,14 +60,26 @@ Lena.views.Toolbar = Backbone.View.extend({
     this.toggleDialog('new');
     this.$('[data-dialog=new] input[name=folder]').focus();
   }, 100),
+
+  getInput: function(form, key) {
+    var input = form.find('input[name="' + key + '"]'),
+        value = input.val();
+
+    value || (value = '');
+    value = value.replace(/\s+/g, ' ').replace(/^ /, '').replace(/ $/, '');
+
+    input.val(value);
+
+    return value;
+  },
   
   createPage: function(e) {
     var form = $(e.target);
 
     this.pages.create({
-      folder: form.find('input[name=folder]').val(),
-      title: form.find('input[name=title]').val(),
-      subtitle: form.find('input[name=subtitle]').val(),
+      folder: this.getInput(form, 'folder'),
+      title: this.getInput(form, 'title'),
+      subtitle: this.getInput(form, 'subtitle'),
       position: (new Date).getTime()
     }, {
       success: _.bind(function(model) {
@@ -96,9 +108,9 @@ Lena.views.Toolbar = Backbone.View.extend({
         page = _.first(this.pages.docs());
 
     page.save({
-      folder: form.find('input[name=folder]').val(),
-      title: form.find('input[name=title]').val(),
-      subtitle: form.find('input[name=subtitle]').val()
+      folder: this.getInput(form, 'folder'),
+      title: this.getInput(form, 'title'),
+      subtitle: this.getInput(form, 'subtitle'),
     });
 
     return false;
