@@ -16,6 +16,9 @@ Lena.views.Menu = Backbone.View.extend({
     var next = this.pages.next(),
         previous = this.pages.previous();
 
+    next && next.preload();
+    previous && previous.preload();
+
     return {
       menu: this.ddoc.menu(this.pages.folders()),
       playing: this.playing,

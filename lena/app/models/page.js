@@ -3,6 +3,19 @@ Lena.models.Page = Backbone.Model.extend({
     type: 'page'
   },
 
+  preload: function() {
+    if (this._preloaded) {
+      return;
+    }
+    this._preloaded = true;
+
+    _.each(this.images(), function(image) {
+      var img = document.createElement('img');
+
+      img.src = image.url;
+    }, this);
+  },
+
   match: function(folder, page) {
     if (page) {
       return Lena.helpers.url.match([

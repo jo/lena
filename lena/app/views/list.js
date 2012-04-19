@@ -1,10 +1,6 @@
 Lena.views.List = Backbone.View.extend({
   template: 'list',
 
-  events: {
-    'click a': 'go'
-  },
-  
   initialize: function(options) {
     this.ddoc = options.ddoc;
     this.router = options.router;
@@ -26,11 +22,5 @@ Lena.views.List = Backbone.View.extend({
         };
       })
     };
-  },
-  
-  go: function(e) {
-    this.router.navigate(e.target.getAttribute('href'), { trigger: true });
-
-    return false;
   }
 });

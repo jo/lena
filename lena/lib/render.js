@@ -16,10 +16,11 @@ exports.render = function(ddoc, userCtx, view, partial) {
       view.folders.push(doc.folder);
     }
   });
+  view.windowTitle = view.title;
   if (view.docs.length > 0) {
-    view.title += ' - ' + view.docs[0].folder;
+    view.windowTitle += ' - ' + view.docs[0].folder;
     if (view.docs.length === 1) {
-      view.title += ' - ' + view.docs[0].title;
+      view.windowTitle += ' - ' + view.docs[0].title;
     }
   }
   view.menu = [];
