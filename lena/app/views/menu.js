@@ -3,8 +3,7 @@ Lena.views.Menu = Backbone.View.extend({
 
   events: {
     'click [data-player=start]': 'start',
-    'click [data-player=stop]': 'stop',
-    'click a[href=~/]': 'go'
+    'click [data-player=stop]': 'stop'
   },
   
   initialize: function(options) {
@@ -48,12 +47,6 @@ Lena.views.Menu = Backbone.View.extend({
   stop: function() {
     this.$('.player').removeClass('playing');
     this.playing = false;
-
-    return false;
-  },
-  
-  go: function(e) {
-    this.router.navigate(e.target.getAttribute('href'), { trigger: true });
 
     return false;
   }

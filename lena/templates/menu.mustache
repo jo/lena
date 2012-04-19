@@ -5,13 +5,13 @@
 </ol>
 {{#showPlayer}}
   <ol class="player {{#playing}} playing{{/playing}}">
-    <li><a class="play start" data-player=start href="#">Play</a></li>
-    <li><a class="play pause" data-player=stop href="#">Pause</a></li>
+    <li><a class="play start" data-player=start title=Play href="#">Play</a></li>
+    <li><a class="play pause" data-player=stop title=Pause href="#">Pause</a></li>
     {{#previous}}
-      <li><a class="play reverse" href="/{{folder}}/{{_id}}">Reverse</a></li>
+      <li><a class="play reverse" title=Previous href="/{{folder}}/{{_id}}">Reverse</a></li>
     {{/previous}}
     {{#next}}
-      <li><a class="play forward" href="/{{folder}}/{{_id}}">Forward</a></li>
+      <li><a class="play forward" title=Next href="/{{folder}}/{{_id}}">Forward</a></li>
     {{/next}}
   </ol>
 {{/showPlayer}}
