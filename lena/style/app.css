@@ -90,17 +90,9 @@ section > article img {
   float: left;
 }
 section > article p {
-  max-width: 55em;
+  max-width: 40em;
 }
 section > article ol.list {
-  padding: 0;
-  -moz-column-width: 16em;
-  -webkit-column-width: 16em;
-  column-width: 16em;
-  -moz-column-gap: 2em;
-  -webkit-column-gap: 2em;
-  column-gap: 2em;
-  list-style: none;
 }
 section > aside > *:first-child,
 section > article > *:first-child {
