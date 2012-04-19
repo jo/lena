@@ -72,7 +72,6 @@ header > h1:after {
 /* lists */
 section > article ol,
 section > article ul {
-  color: #999;
   padding: 0;
   -moz-column-width: 16em;
   -webkit-column-width: 16em;
@@ -81,6 +80,10 @@ section > article ul {
   -webkit-column-gap: 2em;
   column-gap: 2em;
   list-style: none;
+}
+section > article ol.list,
+section > article ul.list{
+  color: #999;
 }
 section > article ol a,
 section > article ul a {
