@@ -1,6 +1,10 @@
 Lena.models.Session = Backbone.Model.extend({
   urlRoot: '/_session',
 
+  canWrite: function() {
+    return this.isAdmin();
+  },
+
   username: function() {
     return this.has('userCtx') && this.get('userCtx').name;
   },

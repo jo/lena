@@ -10,7 +10,7 @@ Lena.views.Drop = Backbone.View.extend({
 
   render: function() {
     // initialize native drag 'n' drop events
-    if (this.session.username()) {
+    if (this.session.canWrite()) {
       document.body.ondrop = _.bind(this.drop, this);
       document.body.ondragover = _.bind(this.dragover, this);
       document.body.ondragenter = _.bind(this.dragenter, this);
