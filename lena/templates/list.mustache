@@ -10,9 +10,12 @@
         {{#doc}}
           <li data-id="{{_id}}"><a href="{{url}}">{{title}}</a> {{subtitle}}</li>
         {{/doc}}
-        {{#docs}}
+        {{^doc}}
+          <li data-id="{{_id}}"><a href="{{url}}">{{title}}</a> {{subtitle}}</li>
+        {{/doc}}
+        {{#dublicates}}
           <li class=double data-id="{{_id}}"><a href="{{url}}">{{title}}</a> {{subtitle}}</li>
-        {{/docs}}
+        {{/dublicates}}
       {{/docs}}
     </ol>
   </article>

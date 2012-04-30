@@ -3,7 +3,7 @@ Lena.models.Session = Backbone.Model.extend({
 
   canWrite: function() {
     // TODO: adjust for admin party mode
-    return this.isAdmin() && this.username();
+    return this.isAdmin() // && this.username();
   },
 
   username: function() {

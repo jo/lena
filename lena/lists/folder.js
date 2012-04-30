@@ -15,7 +15,6 @@ function(head, req) {
   }
 
   if (view.docs.length === 1) {
-    view.doc = view.docs[0];
     template = this.templates.show;
   } else {
     template = this.templates.list;

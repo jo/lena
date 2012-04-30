@@ -18,7 +18,7 @@ Lena.views.List = Backbone.View.extend({
       docs: _.map(_.groupBy(this.pages.toJSON(), function(page) { return page.title + page.subtitle; }), function(docs, key) {
         return {
           doc: docs.shift(),
-          docs: docs
+          dublicates: docs
         };
       })
     };
