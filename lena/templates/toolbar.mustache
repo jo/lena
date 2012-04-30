@@ -14,12 +14,13 @@
     </p>
     {{#show}}
       <p class=format>
-        <button data-command=formatBlock data-value=H1>H</button>
-        <button data-command=formatBlock data-value=P>P</button>
-        <button data-command=bold>b</button>
-        <button data-command=italic>i</button>
-        <button data-command=underline>u</button>
-        <button data-command=insertUnorderedList>&equiv;</button>
+        <button title=Heading data-command=formatBlock data-value=H1>H</button>
+        <button title=Paragraph data-command=formatBlock data-value=P>P</button>
+        <button title=bold data-command=bold>b</button>
+        <button title=italic data-command=italic>i</button>
+        <button title=underline data-command=underline>u</button>
+        <button title=List data-command=insertUnorderedList>&equiv;</button>
+        <button title=Link data-command=createLink data-get=href data-ask="Please enter the URL. Use 'mailto:me@example.com' to link to an e-mail address." data-default="http://">a</button>
       </p>
       <p class=images>
         {{#images}}

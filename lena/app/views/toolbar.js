@@ -51,7 +51,11 @@ Lena.views.Toolbar = Backbone.View.extend({
   format: _.debounce(function(e) {
     var button = $(e.target);
 
-    document.execCommand(button.data('command'), false, button.data('value'));
+    if (button.data('get')) {
+      document.execCommand(button.data('command'), false, prompt(button.data('ask'), button.data('default')));
+    } else {
+      document.execCommand(button.data('command'), false, button.data('value'));
+    }
 
     return false;
   }, 100),

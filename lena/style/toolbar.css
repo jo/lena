@@ -70,6 +70,12 @@ menu button[data-command=italic] {
 menu button[data-command=underline] {
   text-decoration: underline;
 }
+menu button[data-command=createLink] {
+  font-weight: bold;
+}
+menu button[data-command=createLink]:hover {
+  text-decoration: underline;
+}
 menu button[data-command=insertImage] {
   background-repeat: no-repeat;
   background-position: center center;
