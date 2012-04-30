@@ -102,6 +102,9 @@ section > article > *:first-child {
 article .list li.double {
   display: none;
 }
+area {
+  outline: none;
+}
 
 /* responsivity */
 @media all and (max-width: 800px) {

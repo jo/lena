@@ -38,6 +38,7 @@ Lena.views.Show = Backbone.View.extend({
       left.setAttribute('coords', '0,0,'  + width/2 + ',' + height);
       left.setAttribute('href', Lena.helpers.url.page(previous.toJSON()));
       left.setAttribute('title', 'Previous');
+      left.onfocus = blur;
       map.appendChild(left);
     }
 
@@ -46,6 +47,7 @@ Lena.views.Show = Backbone.View.extend({
       right.setAttribute('coords', ''  + width/2 + ',0,' + width + ',' + height);
       right.setAttribute('href', Lena.helpers.url.page(next.toJSON()));
       right.setAttribute('title', 'Next');
+      right.onfocus = blur;
       map.appendChild(right);
     }
 
