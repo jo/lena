@@ -8,6 +8,7 @@ Lena.views.Toolbar = Backbone.View.extend({
     'click [data-action=edit]': 'editPage',
     'submit [data-dialog=edit]': 'updatePage',
     'click [data-action=destroy]': 'destroy',
+    'click [data-action=delete-image]': 'deleteImage',
     'click [data-action=sort]': 'sortPages',
     'submit [data-dialog=sort]': 'sortPagesDone',
     'click [data-action=logout]': 'logout',
@@ -136,6 +137,26 @@ Lena.views.Toolbar = Backbone.View.extend({
       _.invoke(this.pages.docs(), 'destroy', {
         success: _.bind(function() {
           this.router.navigate(url, { trigger: true, replace: true });
+        }, this)
+      });
+    }
+
+    return false;
+  },
+
+  deleteImage: function(e) {
+    var filename = $(e.target).data('filename'),
+        page = _.first(this.pages.docs()),
+        attachments = page.get('_attachments');
+
+    if (filename) {
+      if (attachments) {
+        delete attachments[filename];
+      }
+
+      page.save({}, {
+        success: _.bind(function() {
+          this.$('p.images [data-filename="' + filename + '"]').remove();
         }, this)
       });
     }

@@ -23,7 +23,7 @@
       </p>
       <p class=images>
         {{#images}}
-          <button data-command=insertImage data-value="{{url}}" style="background-image: url({{url}})"></button>
+          <button data-command=insertImage data-value="{{url}}" data-filename="{{name}}" style="background-image: url({{url}})" title="{{name}}"></button><sup><a href=# data-action=delete-image title="Delete image {{name}}" data-filename="{{name}}">×</a></sup>
         {{/images}}
       </p>
     {{/show}}
