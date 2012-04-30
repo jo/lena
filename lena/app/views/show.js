@@ -96,7 +96,11 @@ Lena.views.Show = Backbone.View.extend({
   },
 
   render: function() {
-    $('#cursor').hide();
+    var cursor = $('#cursor');
+
+    cursor.hide();
+    cursor.removeClass('bwd');
+    cursor.removeClass('fwd');
 
     Backbone.View.prototype.render.call(this);
 
