@@ -1,0 +1,21 @@
+#cursor {
+  width: 49px;
+  height: 57px;
+  cursor: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+#cursor.bwd {
+  background-image: url('data:image/gif;base64,<%= base64 read 'images/backward.png' %>');
+}
+#cursor.fwd {
+  background-image: url('data:image/gif;base64,<%= base64 read 'images/forward.png' %>');
+}
+rect {
+  cursor: none;
+}

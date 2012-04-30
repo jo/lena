@@ -14,7 +14,7 @@ Lena.views.Show = Backbone.View.extend({
   view: function() {
     return {
       title: this.ddoc.get('title'),
-      editable: this.session.isAdmin(),
+      editable: this.session.canWrite(),
       docs: this.pages.toJSON()
     };
   },
@@ -27,7 +27,12 @@ Lena.views.Show = Backbone.View.extend({
         previous = this.pages.previous(),
         map = document.getElementById('image-player') || document.createElement('map'),
         left = previous && document.createElement('area'),
-        right = next && document.createElement('area');
+        right = next && document.createElement('area'),
+        cursor = $('#cursor'),
+        cursorOffset = {
+          x: -55,
+          y: -28
+        };
 
     image.setAttribute('usemap', '#image-player');
 
@@ -37,8 +42,26 @@ Lena.views.Show = Backbone.View.extend({
       left.setAttribute('shape', 'rect');
       left.setAttribute('coords', '0,0,'  + width/2 + ',' + height);
       left.setAttribute('href', Lena.helpers.url.page(previous.toJSON()));
-      left.setAttribute('title', 'Previous');
       left.onfocus = blur;
+
+      $(left).mouseout(function(){
+        cursor.hide();
+        cursor.removeClass('bwd');
+
+        return false;
+      });
+      $(left).mouseenter(function(){
+        cursor.addClass('bwd');
+        cursor.show();
+
+        return false;
+      });
+      $(left).mousemove(function(e){
+        cursor.css('left', e.clientX + 5).css('top', e.clientY + cursorOffset.y);
+      });
+
+      previous.preload();
+
       map.appendChild(left);
     }
 
@@ -46,8 +69,26 @@ Lena.views.Show = Backbone.View.extend({
       right.setAttribute('shape', 'rect');
       right.setAttribute('coords', ''  + width/2 + ',0,' + width + ',' + height);
       right.setAttribute('href', Lena.helpers.url.page(next.toJSON()));
-      right.setAttribute('title', 'Next');
       right.onfocus = blur;
+
+      $(right).mouseout(function(){
+        cursor.hide();
+        cursor.removeClass('fwd');
+
+        return false;
+      });
+      $(right).mouseenter(function(){
+        cursor.addClass('fwd');
+        cursor.show();
+
+        return false;
+      });
+      $(right).mousemove(function(e){
+        cursor.css('left', e.clientX + cursorOffset.x).css('top', e.clientY + cursorOffset.y);
+      });
+
+      next.preload();
+
       map.appendChild(right);
     }
 
@@ -55,6 +96,8 @@ Lena.views.Show = Backbone.View.extend({
   },
 
   render: function() {
+    $('#cursor').hide();
+
     Backbone.View.prototype.render.call(this);
 
     $('section article img').on('load', _.bind(this.buildMap, this));
