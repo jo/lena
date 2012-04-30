@@ -13,7 +13,6 @@ Lena.helpers.image = (function() {
   // crop via canvas
   function crop(options) {
     options.startedAt || (options.startedAt = new Date());
-    options.fileName = options.file.name.replace(/\.(png|jpg|jpeg)$/i, '.png');
 
     $(options.indicator).show();
     info(options, 0.9);
@@ -47,9 +46,18 @@ Lena.helpers.image = (function() {
         info(options, 0.7);
         
         var attachment = {};
-        options.data = options.canvas.toDataURL().slice(22);
+
+        // get image
+        options.data = options.canvas.toDataURL('image/jpeg');
+
+        // check content type
+        // (does your browser support canvas.toDataURL('image/jpeg')?)
+        var contentType = options.data.replace(/^.*(image\/[^;,]+).*$/, '$1');
+        options.data = options.data.slice(13 + contentType.length);
+        options.fileName = options.file.name.replace(/\.(png|jpg|jpeg)$/i, '.' + contentType.split('/')[1]);
+
         attachment[options.fileName] = {
-          content_type: 'image/png',
+          content_type: contentType,
           data: options.data
         };
 
