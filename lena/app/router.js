@@ -2,8 +2,8 @@ Lena.Router = Backbone.Router.extend({
   routes: {
     "": "index",
     ";)": "login",
-    ":folder": "folder",
-    ":folder/:title": "page"
+    ":folder": "list",
+    ":folder/:title": "show"
   },
 
   initialize: function(payload) {
@@ -24,24 +24,32 @@ Lena.Router = Backbone.Router.extend({
 
   // home page
   index: function() {
+    this.action = 'index';
+
     this.view.setAppView('page');
     this.pages.setScope();
   },
 
   // show folder
-  folder: function(folder) {
+  list: function(folder) {
+    this.action = 'list';
+
     this.view.setAppView('folder');
     this.pages.setScope(folder);
   },
 
   // show page
-  page: function(folder, page) {
+  show: function(folder, page) {
+    this.action = 'show';
+
     this.view.setAppView('page');
     this.pages.setScope(folder, page);
   },
 
   // login
   login: function() {
+    this.action = 'login';
+
     this.view.setAppView('login');
   }
 })

@@ -29,7 +29,7 @@ Lena.views.Toolbar = Backbone.View.extend({
   view: function() {
     return {
       canWrite: this.session.canWrite(),
-      show: this.pages.single(),
+      show: this.pages.single() && this.router.action != 'index',
       list: this.pages.multiple(),
       folders: _.uniq(this.pages.pluck('folder').concat(this.ddoc.get('menu'))).sort(),
       currentFolder: this.pages.folder,
