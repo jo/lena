@@ -5,8 +5,10 @@ Lena.views.Toolbar = Backbone.View.extend({
     'click [data-action=new]': 'newPage',
     'click [data-folder]': 'setFolder',
     'submit [data-dialog=new]': 'createPage',
-    'click [data-action=edit]': 'editPage',
+    'click [data-action=edit]': 'edit',
     'submit [data-dialog=edit]': 'updatePage',
+    'click [data-action=copy]': 'copy',
+    'submit [data-dialog=copy]': 'copyPage',
     'click [data-action=destroy]': 'destroy',
     'click [data-action=delete-image]': 'deleteImage',
     'click [data-action=sort]': 'sortPages',
@@ -82,6 +84,7 @@ Lena.views.Toolbar = Backbone.View.extend({
     var form = $(e.target);
 
     this.pages.create({
+      _id: this.getInput(form, '_id'),
       folder: this.getInput(form, 'folder'),
       title: this.getInput(form, 'title'),
       subtitle: this.getInput(form, 'subtitle'),
@@ -96,7 +99,7 @@ Lena.views.Toolbar = Backbone.View.extend({
   },
 
   // edit page
-  editPage: _.debounce(function() {
+  edit: _.debounce(function() {
     this.toggleDialog('edit');
     this.$('[data-dialog=edit] input[name=subtitle]').focus();
   }, 100),
@@ -115,7 +118,26 @@ Lena.views.Toolbar = Backbone.View.extend({
     page.save({
       folder: this.getInput(form, 'folder'),
       title: this.getInput(form, 'title'),
-      subtitle: this.getInput(form, 'subtitle'),
+      subtitle: this.getInput(form, 'subtitle')
+    });
+
+    return false;
+  },
+
+  copy: _.debounce(function() {
+    this.toggleDialog('copy');
+    this.$('[data-dialog=copy] input[name=name]').focus();
+  }, 100),
+  
+  copyPage: function(e) {
+    var form = $(e.target),
+        page = _.first(this.pages.docs());
+
+    page.copy(this.getInput(form, '_id'), {
+      success: _.bind(function(model) {
+        this.pages.add(model);
+        this.router.navigate(Lena.helpers.url.page(model.toJSON()), { trigger: true });
+      }, this)
     });
 
     return false;

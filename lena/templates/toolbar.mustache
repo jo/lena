@@ -8,6 +8,7 @@
       {{/list}}
       {{#show}}
         <button data-action=edit>Meta</button>
+        <button data-action=copy>Copy</button>
         <button data-action=destroy>Delete</button>
       {{/show}}
       <button data-action=logout>Logout</button>
@@ -39,13 +40,18 @@
           {{/folders}}
         </p>
         <p>
+          <label>Name</label>
+          <input tabindex=2 type=text name=_id required pattern="[-_+a-zA-Z0-9]+">
+          <em>Only letters, numbers and -, + and _ allowed.</em>
+        </p>
+        <p>
           <label>Title</label>
-          <input tabindex=2 type=text name=title required>
+          <input tabindex=3 type=text name=title required size=42>
         </p>
         <p>
           <label>Subtitle</label>
-          <input tabindex=3 type=text name=subtitle value="{{subtitle}}">
-          <input tabindex=4 type=submit value="Create New Page">
+          <input tabindex=4 type=text name=subtitle value="{{subtitle}}" size=42>
+          <input tabindex=5 type=submit value="Create New Page">
         </p>
       </fieldset>
     </form>
@@ -61,13 +67,31 @@
             {{/folders}}
           </p>
           <p>
+            <label>Name</label>
+            <input tabindex=2 type=text name=_id value="{{_id}}" required disabled>
+            <em>The name can not be changed.</em>
+          </p>
+          <p>
             <label>Title</label>
-            <input type=text name=title value="{{title}}" required>
+            <input type=text name=title value="{{title}}" required size=42>
           </p>
           <p>
             <label>Subtitle</label>
-            <input type=text name=subtitle value="{{subtitle}}">
+            <input type=text name=subtitle value="{{subtitle}}" size=42>
             <input type=submit value="Update Meta Information">
+          </p>
+        </fieldset>
+      {{/pages}}
+    </form>
+    <form data-dialog=copy style="display:none">
+      {{#pages}}
+        <fieldset>
+          <legend>Copy Page</legend>
+          <p>
+            <label>New Name</label>
+            <input tabindex=2 type=text name=_id required pattern="[-_+a-zA-Z0-9]+">
+            <em>Only letters, numbers and -, + and _ allowed.</em>
+            <input tabindex=5 type=submit value="Copy Page">
           </p>
         </fieldset>
       {{/pages}}

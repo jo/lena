@@ -17,6 +17,37 @@ Backbone.Model.prototype.destroy = (function() {
   };
 })();
 
+// copy models
+Backbone.Model.prototype.copy = function(id, options) {
+  var success = options.success,
+      model = this.clone();
+
+  options || (options = {});
+  options.headers || (options.headers = {});
+  options.headers['Destination'] = id;
+  options.type = 'COPY';
+  options.url = this.url();
+  options.contentType = 'application/json';
+  options.dataType = 'json';
+
+  model.collection = this.collection;
+  model.unset('_id', { silent: true });
+  model.unset('_rev', { silent: true });
+
+  options.success = function(resp) {
+    model.set({
+      _id: resp.id,
+      _rev: resp.rev
+    });
+
+    if (typeof success === 'function') {
+      success(model);
+    }
+  };
+
+  $.ajax(options);
+};
+
 // save models (update rev)
 Backbone.Model.prototype.save = (function() {
   var oldSave = Backbone.Model.prototype.save;
