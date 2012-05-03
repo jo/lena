@@ -14,9 +14,13 @@ Lena.views.Imagemap = Backbone.View.extend({
         next = this.pages.next(),
         $cursor = $('#cursor'),
         cursorOffset = {
-          x: 5,
+          x: -63,
           y: -28
         };
+
+   function isLeft(e) {
+     return e.clientX < $image.offset().left + $image.width() / 2;
+   }
 
     if (previous || next) {
       $image.mouseout(function(){
@@ -28,7 +32,10 @@ Lena.views.Imagemap = Backbone.View.extend({
         return false;
       });
       $image.mousemove(function(e){
-        if (e.clientX < image.x + middle) {
+        var bwd = isLeft(e),
+            offsetX = bwd ? cursorOffset.x : 8;
+
+        if (bwd) {
           $cursor.addClass('bwd');
           $cursor.removeClass('fwd');
         } else {
@@ -36,10 +43,10 @@ Lena.views.Imagemap = Backbone.View.extend({
           $cursor.removeClass('bwd');
         }
 
-        $cursor.css('left', e.clientX + cursorOffset.x).css('top', e.clientY + cursorOffset.y);
+        $cursor.show().css('left', e.clientX + offsetX).css('top', e.clientY + cursorOffset.y);
       });
       $image.click(function(e){
-        if (e.clientX < image.x + middle) {
+        if (isLeft(e)) {
           // bwd
           previous && router.navigate(Lena.helpers.url.page(previous.toJSON()), { trigger: true });
         } else {
