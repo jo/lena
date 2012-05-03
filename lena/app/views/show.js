@@ -7,7 +7,8 @@ Lena.views.Show = Backbone.View.extend({
     this.pages = options.pages;
 
     this.subviews = {
-      menu: new Lena.views.Menu(options)
+      menu: new Lena.views.Menu(options),
+      imagemap: new Lena.views.Imagemap(options)
     };
   },
   
@@ -93,23 +94,5 @@ Lena.views.Show = Backbone.View.extend({
     }
 
     image.parentNode.appendChild(map);
-  },
-
-  render: function() {
-    var cursor = $('#cursor');
-
-    if (!this.session.canWrite()) {
-      cursor.hide();
-      cursor.removeClass('bwd');
-      cursor.removeClass('fwd');
-    }
-
-    Backbone.View.prototype.render.call(this);
-
-    if (!this.session.canWrite()) {
-      $('section article img').on('load', _.bind(this.buildMap, this));
-    }
-
-    return this;
   }
 });
