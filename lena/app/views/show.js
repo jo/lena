@@ -98,13 +98,17 @@ Lena.views.Show = Backbone.View.extend({
   render: function() {
     var cursor = $('#cursor');
 
-    cursor.hide();
-    cursor.removeClass('bwd');
-    cursor.removeClass('fwd');
+    if (!this.session.canWrite()) {
+      cursor.hide();
+      cursor.removeClass('bwd');
+      cursor.removeClass('fwd');
+    }
 
     Backbone.View.prototype.render.call(this);
 
-    $('section article img').on('load', _.bind(this.buildMap, this));
+    if (!this.session.canWrite()) {
+      $('section article img').on('load', _.bind(this.buildMap, this));
+    }
 
     return this;
   }
