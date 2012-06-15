@@ -17,7 +17,7 @@ Lena.models.Session = Backbone.Model.extend({
   isAdmin: function() {
     var roles = this.roles();
 
-    return roles && roles.indexOf('_admin') > -1;
+    return roles && _.indexOf(roles, '_admin') > -1;
   },
 
   login: function(name, password) {
