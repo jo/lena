@@ -77,7 +77,6 @@ section > article h1 {
 section > aside img,
 section > article img {
   max-width: 100%;
-  display: table;
 }
 section > aside img:first-child,
 section > article img:first-child {

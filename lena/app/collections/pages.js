@@ -93,7 +93,7 @@ Lena.collections.Pages = Backbone.Collection.extend({
   },
 
   toJSON: function() {
-    return this.docs().map(function(model) {
+    return _.map(this.docs(), function(model) {
       var doc = model.toJSON();
 
       return _.extend(doc, { url: Lena.helpers.url.page(doc) });
