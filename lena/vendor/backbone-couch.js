@@ -119,7 +119,9 @@ Backbone.View.prototype.render = (function() {
   return function() {
     var now = new Date;
     
-    console.log(format(now.getTime() - bootedAt) + ' render' + (this.name ? ' ' + this.name : '') + (this.template ? ' (' + this.template + ')' : ''));
+    if (console && typeof console.log === 'function') {
+      console.log(format(now.getTime() - bootedAt) + ' render' + (this.name ? ' ' + this.name : '') + (this.template ? ' (' + this.template + ')' : ''));
+    }
 
     // render template if present
     if (this.template) {
