@@ -38,5 +38,5 @@ Lena.init = function(payload) {
   window.app = new Lena.Router(payload);
 
   // ok, run now
-  Backbone.history.start({ pushState: true });
+  Backbone.history.start({ pushState: navigator.appName !== 'Microsoft Internet Explorer' });
 };
