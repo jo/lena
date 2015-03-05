@@ -39,8 +39,8 @@ Build and install the lena application:
 
 And you're done: http://lena.localhost:5984
 
-# Login
-http://www.lenaboehm.de/;%29
+# Login with a wink
+[http://lena.localhost:5984/;)](http://lena.localhost:5984/;%29)
 
 
 (c) 2012 Johannes J. Schmidt, TF, Berlin
